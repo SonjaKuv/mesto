@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 320px) {
+  .header {
+    padding-top: 8.75%;
+    padding-bottom:13.13%;
+  }
+}
+
+
+@media (min-width: 321px) {
+  .header {
+    padding-top: 3.52%;
+padding-left: 15.63%;
+padding-right: 15.63%;
+padding-bottom: 3.13%;
+  }
+}

@@ -1,0 +1,21 @@
+.grid-elements {
+margin: 0 auto;
+max-width: 880px;
+}
+
+@media (max-width: 320px) {
+  .grid-elements {
+padding-left: 5.94%;
+padding-right: 5.94%;
+    padding-bottom: 15%;
+  }
+}
+
+
+@media (min-width: 321px) {
+  .grid-elements {
+padding-left: 15.63%;
+padding-right: 15.63%;
+padding-bottom: 5.16%;
+  }
+}

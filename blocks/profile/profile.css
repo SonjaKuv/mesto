@@ -1,0 +1,21 @@
+.profile {
+margin: 0 auto;
+max-width: 880px;
+}
+
+@media (max-width: 320px) {
+  .profile {
+padding-left: 5.94%;
+padding-right: 5.94%;
+    padding-bottom: 11.25%;
+  }
+}
+
+
+@media (min-width: 321px) {
+  .profile {
+padding-left: 15.63%;
+padding-right: 15.63%;
+padding-bottom: 3.9%;
+  }
+}
