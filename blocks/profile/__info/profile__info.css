@@ -1,0 +1,23 @@
+.profile__info {
+display: grid;
+grid-template-areas: 
+"name button"
+"descr descr";
+}
+
+@media (max-width: 320px) {
+.profile__info {
+row-gap: 14px;
+margin: 26px auto 36px;
+
+}
+}
+
+
+@media (min-width: 321px) {
+.profile__info {
+row-gap: 16px;
+margin: auto auto auto 30px;
+
+}
+}

@@ -1,0 +1,19 @@
+.profile__description {
+grid-area: descr;
+font-weight: 400;
+}
+
+@media (max-width: 320px) {
+.profile__description {
+font-size: 14px;
+line-height: 17px;
+margin: 0 auto;
+}
+}
+
+@media (min-width: 321px) {
+.profile__description {
+font-size: 18px;
+line-height: 22px;
+}
+}
