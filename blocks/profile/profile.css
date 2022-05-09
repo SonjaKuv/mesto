@@ -4,7 +4,7 @@ margin: 0 auto;
 max-width: 880px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 959px) {
   .profile {
 flex-direction: column;
 padding-left: 5.94%;
@@ -14,7 +14,7 @@ padding-right: 5.94%;
 }
 
 
-@media (min-width: 321px) {
+@media (min-width: 960px) {
   .profile {
 padding-left: 15.63%;
 padding-right: 15.63%;

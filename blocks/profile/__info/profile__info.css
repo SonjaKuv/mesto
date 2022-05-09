@@ -5,7 +5,7 @@ grid-template-areas:
 "descr descr";
 }
 
-@media (max-width: 320px) {
+@media (max-width: 959px) {
 .profile__info {
 row-gap: 14px;
 margin: 26px auto 36px;
@@ -13,8 +13,7 @@ margin: 26px auto 36px;
 }
 }
 
-
-@media (min-width: 321px) {
+@media (min-width: 960px) {
 .profile__info {
 row-gap: 16px;
 margin: auto auto auto 30px;

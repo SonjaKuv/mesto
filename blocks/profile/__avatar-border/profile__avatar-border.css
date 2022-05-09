@@ -4,3 +4,15 @@ height: 127.5px;
   overflow: hidden;
   border-radius: 120px;
 }
+
+@media (max-width: 959px) {
+.profile__avatar-border {
+   margin: 0 auto;
+  }
+}
+
+@media (min-width: 960px) {
+  .profile__avatar-border {
+  margin-left: 0;
+  }
+}

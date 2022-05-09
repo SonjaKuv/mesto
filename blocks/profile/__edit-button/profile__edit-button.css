@@ -3,7 +3,7 @@ grid-area: button;
 align-self: end;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 959px) {
 .profile__edit-button {
 margin-left: 10px;
 width: 18px;
@@ -11,7 +11,7 @@ height: 18px;
 }
 }
 
-@media (min-width: 321px) {
+@media (min-width: 960px) {
 .profile__edit-button {
 margin-left: 18px;
 width: 24px;
