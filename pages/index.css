@@ -20,5 +20,7 @@
 @import url('../blocks/profile/__add-button-icon/profile__add-button-icon.css');
 
 @import url('../blocks/grid-elements/grid-elements.css');
+@import url('../blocks/grid-item/grid-item.css');
+@import url('../blocks/grid-item/__like/grid-item__like.css');
 
 @import url('../blocks/footer/footer.css');
