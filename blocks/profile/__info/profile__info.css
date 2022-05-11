@@ -9,13 +9,17 @@ grid-template-areas:
 .profile__info {
 row-gap: 14px;
 margin: 26px auto 36px;
-
+width: 282px;
+height: 54px;
+column-gap: 10px;
+grid-template-columns: auto 37px;
 }
 }
 
 @media (min-width: 960px) {
 .profile__info {
 row-gap: 16px;
+column-gap: 10px;
 margin: auto auto auto 30px;
 
 }
