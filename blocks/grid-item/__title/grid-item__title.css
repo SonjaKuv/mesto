@@ -1,0 +1,12 @@
+.grid-item__title {
+font-weight: 900;
+font-size: 24px;
+line-height: 23px;
+margin-top: 25px;
+margin-left: 25px;
+grid-area: title;
+color: #000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+} 

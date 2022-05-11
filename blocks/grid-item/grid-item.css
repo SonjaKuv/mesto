@@ -1,7 +1,11 @@
 .grid-item {
-display: flex;
+display: grid;
 background-color: #fff;
 border-radius: 10px;
 width: 282px;
 height: 362px;
+margin: 0 auto;
+grid-template-areas: 
+"photo photo"
+"title like";
 }
