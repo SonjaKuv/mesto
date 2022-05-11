@@ -1,6 +1,7 @@
 .profile__edit-button {
 grid-area: button;
 align-self: end;
+cursor: pointer;
 }
 
 @media (max-width: 959px) {

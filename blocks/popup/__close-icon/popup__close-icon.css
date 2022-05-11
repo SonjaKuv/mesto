@@ -1,0 +1,22 @@
+.popup__close-icon {
+align-self: end;
+cursor: pointer;
+}
+
+@media (max-width: 450px) {
+.popup__close-icon {
+width: 20px;
+margin-top: 87px;
+margin-bottom: 16px;
+margin-right: 5.94%
+}
+}
+
+@media (min-width: 451px) {
+.popup__close-icon {
+width: 32px;
+margin-top: 155px;
+margin-bottom: 8px;
+margin-right: 30%
+}
+}

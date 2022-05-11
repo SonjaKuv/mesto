@@ -22,7 +22,7 @@
 <p class="profile__description root">Исследователь океана</p>
 <nav>
 <img class="profile__edit-button image" alt="Кнопка редактирования" src="./images/Edit Button.png">
-</nav>>
+</nav>
 </div>
 <button class="profile__add-button">
 <img class="profile__add-button-icon image" src="./images/Vector.png" alt="Кнопка добавления">
@@ -65,7 +65,18 @@
 <h3 class="footer__copyright root">&copy; 2022 Кувшинова Софья</h3>
 </footer>
 <section class="popup">
-
+<img alt="Закрывающий крестик" class="popup__close-icon image" src="./images/Close Icon.png">
+<div class="form">
+<h2 class="form__title root">Редактировать профиль</h2>
+<fieldset class="form__input-container">
+    <input type="text" class="form__item root" placeholder="Жак-Ив Кусто" required>
+    <input type="text" class="form__item root" placeholder="Исследователь океана" required>
+</fieldset>
+<fieldset class="form__handlers">
+   <input type="submit" class="form__save-button" value="Сохранить">
+  </fieldset>
+</div>
 </section>
     </div>
+  <script src="./index.js"></script>
   </body>
