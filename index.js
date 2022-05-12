@@ -2,33 +2,37 @@ const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const closeButton = popup.querySelector('.popup__close-icon');
 
+
 function togglePopup () {
  popup.classList.toggle('popup_opened')}
 editButton.addEventListener('click', togglePopup);
 closeButton.addEventListener('click', togglePopup);
-popup.addEventListener('click', togglePopup);
 
 
-// Находим форму в DOM
-let formElement = // Воспользуйтесь методом querySelector()
-// Находим поля формы в DOM
-let nameInput = // Воспользуйтесь инструментом .querySelector()
-let jobInput = // Воспользуйтесь инструментом .querySelector()
+let formElement = popup.querySelector('.form');
+let nameInput = formElement.querySelector('.form__item-name')
+let jobInput = formElement.querySelector('.form__item-job')
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+let profileName = document.querySelector('profile__name');
+let profileJob = document.querySelector('profile__description');
+
+console.log({
+profileName,
+profileJob,});
+
+
+
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
+    evt.preventDefault(); 
 
-    // Получите значение полей jobInput и nameInput из свойства value
+console.log(nameInput.value);
+console.log(jobInput.value);
 
-    // Выберите элементы, куда должны быть вставлены значения полей
+let profileName = document.querySelector('.profile__name');
+let profileJob = document.querySelector('.profile__description');
 
-    // Вставьте новые значения с помощью textContent
+profileName.texContent = nameInput.value;
+profileJob.textContent = jobInput.value;
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
