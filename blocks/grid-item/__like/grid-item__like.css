@@ -1,14 +1,15 @@
 .grid-item__like {
-background-image: url('../../../images/like.png');
-width: 22px;
-height: 19px;
-margin: 30px 20px 30px; 
-grid-area: like;
-justify-self: end;
-cursor: pointer;
-transition: opacity .3s ease;
+  background-image: url("../../../images/like.png");
+  width: 22px;
+  height: 19px;
+  margin: 30px 20px 30px;
+  grid-area: like;
+  justify-self: end;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  cursor: url("../../../images/cursor.png"), pointer;
 }
 
 .grid-item__like:hover {
-opacity: .5;
+  opacity: 0.5;
 }

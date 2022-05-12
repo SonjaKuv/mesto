@@ -1,24 +1,21 @@
 .form__title {
-font-weight: 900;
-color: #000;
+  font-weight: 900;
+  color: #000;
 }
 
 @media (max-width: 450px) {
-.form__title {
-font-size: 18px;
-line-height: 22px;
-margin: 25px 22px 0 22px;
-}
+  .form__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 25px 22px 0 22px;
+  }
 }
 
 @media (min-width: 451px) {
-.form__title {
-font-size: 24px;
-line-height: 29px; 
-margin-top: 34px;
-margin-left: 36px;
+  .form__title {
+    font-size: 24px;
+    line-height: 29px;
+    margin-top: 34px;
+    margin-left: 36px;
+  }
 }
-}
-
-
-

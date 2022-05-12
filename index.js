@@ -3,8 +3,9 @@ const popup = document.querySelector('.popup');
 const closeButton = popup.querySelector('.popup__close-icon');
 
 
-function togglePopup () {
- popup.classList.toggle('popup_opened')}
+function togglePopup() {
+    popup.classList.toggle('popup_opened')
+}
 editButton.addEventListener('click', togglePopup);
 closeButton.addEventListener('click', togglePopup);
 
@@ -17,18 +18,17 @@ console.log(nameInput.value);
 console.log(jobInput.value);
 
 
-function formSubmitHandler (evt) {
-    evt.preventDefault(); 
+function formSubmitHandler(evt) {
+    evt.preventDefault();
 
-console.log(nameInput.value);
-console.log(jobInput.value);
+    console.log(nameInput.value);
+    console.log(jobInput.value);
 
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__description');
+    let profileName = document.querySelector('.profile__name');
+    let profileJob = document.querySelector('.profile__description');
 
-profileName.textContent = nameInput.value;
-profileJob.textContent = jobInput.value;
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
 };
 
-formElement.addEventListener('submit', formSubmitHandler); 
-
+formElement.addEventListener('submit', formSubmitHandler);

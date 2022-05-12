@@ -1,19 +1,19 @@
 .profile__description {
-grid-area: descr;
-font-weight: 400;
+  grid-area: descr;
+  font-weight: 400;
 }
 
 @media (max-width: 959px) {
-.profile__description {
-font-size: 14px;
-line-height: 17px;
-margin: 0 auto;
-}
+  .profile__description {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 960px) {
-.profile__description {
-font-size: 18px;
-line-height: 22px;
-}
+  .profile__description {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }

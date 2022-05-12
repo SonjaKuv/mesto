@@ -1,29 +1,28 @@
 .footer {
-margin: 0 auto;
-max-width: 880px;
+  margin: 0 auto;
+  max-width: 880px;
 }
 
 @media (max-width: 320px) {
   .footer {
-padding-left: 5.94%;
-padding-right: 5.94%;
+    padding-left: 5.94%;
+    padding-right: 5.94%;
     padding-bottom: 36px;
   }
 }
 
-
 @media (min-width: 321px) and (max-width: 1279px) {
   .footer {
-padding-left: 15.62%;
-padding-right: 15.62%;
-padding-bottom: 60px;
+    padding-left: 15.62%;
+    padding-right: 15.62%;
+    padding-bottom: 60px;
   }
 }
 
 @media (min-width: 1280px) {
   .footer {
-padding-left: 200px;
-padding-right: 200px;
-padding-bottom: 60px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 60px;
   }
 }

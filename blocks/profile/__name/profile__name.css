@@ -1,23 +1,21 @@
 .profile__name {
-grid-area: name;
-font-weight: 500;
+  grid-area: name;
+  font-weight: 500;
 }
-
-
 
 @media (max-width: 959px) {
-.profile__name {
-font-size: 27px;
-line-height: 33px;
-max-height: 26px;
-justify-self: end;
-}
+  .profile__name {
+    font-size: 27px;
+    line-height: 33px;
+    max-height: 26px;
+    justify-self: end;
+  }
 }
 
 @media (min-width: 960px) {
-.profile__name {
-font-size: 42px;
-line-height: 48px;
-max-height: 39px;
-}
+  .profile__name {
+    font-size: 42px;
+    line-height: 48px;
+    max-height: 39px;
+  }
 }

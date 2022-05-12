@@ -1,17 +1,17 @@
 .form__input-container {
-max-width: 358px;
-border: 0;
-padding: 0;
+  max-width: 358px;
+  border: 0;
+  padding: 0;
 }
 
 @media (max-width: 450px) {
-.form__input-container {
-margin: 75px 22px 47px 22px;
-}
+  .form__input-container {
+    margin: 75px 22px 47px 22px;
+  }
 }
 
 @media (min-width: 451px) {
-.form__input-container {
-margin: 48px auto 50px auto;
-}
+  .form__input-container {
+    margin: 48px auto 50px auto;
+  }
 }

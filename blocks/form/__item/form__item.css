@@ -1,16 +1,16 @@
 .form__item {
-border: 0;
+  border: 0;
   width: 100%;
   box-sizing: border-box;
-border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-color: #000;
-margin-bottom: 30px;
-padding-bottom: 7px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  margin-bottom: 30px;
+  padding-bottom: 7px;
 }
 
 .form__item:last-child {
-margin-bottom: 0;
+  margin-bottom: 0;
 }

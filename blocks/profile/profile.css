@@ -1,31 +1,30 @@
 .profile {
-display: flex;
-margin: 0 auto;
-max-width: 880px;
+  display: flex;
+  margin: 0 auto;
+  max-width: 880px;
 }
 
 @media (max-width: 959px) {
   .profile {
-flex-direction: column;
-padding-left: 5.94%;
-padding-right: 5.94%;
+    flex-direction: column;
+    padding-left: 5.94%;
+    padding-right: 5.94%;
     padding-bottom: 36px;
   }
 }
 
-
 @media (min-width: 960px) and (max-width: 1279px) {
   .profile {
-padding-left: 15.62%;
-padding-right: 15.62%;
-padding-bottom: 50px;
+    padding-left: 15.62%;
+    padding-right: 15.62%;
+    padding-bottom: 50px;
   }
 }
 
 @media (min-width: 1280px) {
   .profile {
-padding-left: 200px;
-padding-right: 200px;
-padding-bottom: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 50px;
   }
 }
