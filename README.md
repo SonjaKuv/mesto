@@ -14,7 +14,7 @@
 - Форма;
 - функциональная часть написана на Java Script;
 
-Ссылка проекта на GitHub Pages:
+Ссылка проекта на GitHub Pages: https://sonjakuv.github.io/mesto/
 
 #### Планы по доработке проекта:
 
