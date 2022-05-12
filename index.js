@@ -10,16 +10,11 @@ closeButton.addEventListener('click', togglePopup);
 
 
 let formElement = popup.querySelector('.form');
-let nameInput = formElement.querySelector('.form__item-name')
-let jobInput = formElement.querySelector('.form__item-job')
+let nameInput = formElement.querySelector('.form__item-name');
+let jobInput = formElement.querySelector('.form__item-job');
 
-let profileName = document.querySelector('profile__name');
-let profileJob = document.querySelector('profile__description');
-
-console.log({
-profileName,
-profileJob,});
-
+console.log(nameInput.value);
+console.log(jobInput.value);
 
 
 function formSubmitHandler (evt) {
@@ -31,8 +26,9 @@ console.log(jobInput.value);
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__description');
 
-profileName.texContent = nameInput.value;
+profileName.textContent = nameInput.value;
 profileJob.textContent = jobInput.value;
-}
+};
 
 formElement.addEventListener('submit', formSubmitHandler); 
+

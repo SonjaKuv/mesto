@@ -18,7 +18,7 @@
 <img class="profile__avatar image" alt="Аватар" src="./images/avatar.jpg">
 </div>
 <div class="profile__info">
-<h1 class="profile__name root">Жак-Ив Кусто</h1>
+<p class="profile__name root">Жак-Ив Кусто</p>
 <p class="profile__description root">Исследователь океана</p>
 <nav>
 <img class="profile__edit-button image" alt="Кнопка редактирования" src="./images/Edit Button.png">
@@ -66,16 +66,16 @@
 </footer>
 <section class="popup">
 <img alt="Закрывающий крестик" class="popup__close-icon image" src="./images/Close Icon.png">
-<div class="form">
+<form class="form">
 <h2 class="form__title root">Редактировать профиль</h2>
 <fieldset class="form__input-container">
-    <input type="text" class="form__item form__item-name root" placeholder="Имя" required>
-    <input type="text" class="form__item form__item-job root" placeholder="О себе" required>
+    <input type="text" class="form__item form__item-name root" placeholder="Имя" value="Жак-Ив Кусто" required>
+    <input type="text" class="form__item form__item-job root" placeholder="О себе" value="Исследователь океана" required>
 </fieldset>
 <fieldset class="form__handlers">
    <input type="submit" class="form__save-button" value="Сохранить">
   </fieldset>
-</div>
+</form>
 </section>
     </div>
   <script src="./index.js"></script>
