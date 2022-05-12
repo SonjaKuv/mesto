@@ -5,7 +5,6 @@
   margin: 30px 20px 30px;
   grid-area: like;
   justify-self: end;
-  cursor: pointer;
   transition: opacity 0.3s ease;
   cursor: url("../../../images/cursor.png"), pointer;
 }
