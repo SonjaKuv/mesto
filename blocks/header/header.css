@@ -8,17 +8,26 @@
 
 @media (max-width: 320px) {
   .header {
-    padding-top: 8.75%;
-    padding-bottom:13.13%;
+    padding-top: 28px;
+    padding-bottom: 42px;
   }
 }
 
 
-@media (min-width: 321px) {
+@media (min-width: 321px) and (max-width: 1279px) {
   .header {
-    padding-top: 3.52%;
+    padding-top: 45px;
 padding-left: 15.62%;
 padding-right: 15.62%;
-padding-bottom: 3.13%;
+padding-bottom: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    padding-top: 45px;
+padding-left: 200px;
+padding-right: 200px;
+padding-bottom: 40px;
   }
 }

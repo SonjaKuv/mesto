@@ -6,12 +6,12 @@ padding: 0;
 
 @media (max-width: 450px) {
 .form__input-container {
-margin: 75px 22px 45px 22px;
+margin: 75px 22px 47px 22px;
 }
 }
 
 @media (min-width: 451px) {
 .form__input-container {
-margin: 54px auto 48px auto;
+margin: 48px auto 50px auto;
 }
 }

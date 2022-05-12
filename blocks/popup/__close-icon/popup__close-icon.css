@@ -1,6 +1,11 @@
 .popup__close-icon {
 align-self: end;
 cursor: pointer;
+transition: opacity .3s ease;
+}
+
+.popup__close-icon:hover {
+opacity: .6;
 }
 
 @media (max-width: 450px) {

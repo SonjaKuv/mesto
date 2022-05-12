@@ -1,7 +1,11 @@
 .profile__edit-button {
 grid-area: button;
-align-self: end;
+transition: opacity .3s ease;
 cursor: pointer;
+}
+
+.profile__edit-button:hover {
+opacity: .6;
 }
 
 @media (max-width: 959px) {
@@ -13,8 +17,8 @@ height: 18px;
 
 @media (min-width: 960px) {
 .profile__edit-button {
-margin-left: 18px;
 width: 24px;
 height: 24px;
+justify-self: start;
 }
 }

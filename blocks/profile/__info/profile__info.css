@@ -3,6 +3,7 @@ display: grid;
 grid-template-areas: 
 "name button"
 "descr descr";
+align-items: end;
 }
 
 @media (max-width: 959px) {
@@ -19,8 +20,7 @@ grid-template-columns: auto 37px;
 @media (min-width: 960px) {
 .profile__info {
 row-gap: 16px;
-column-gap: 10px;
+column-gap: 18px;
 margin: auto auto auto 30px;
-
 }
 }

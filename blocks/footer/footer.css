@@ -7,15 +7,23 @@ max-width: 880px;
   .footer {
 padding-left: 5.94%;
 padding-right: 5.94%;
-    padding-bottom: 11.25%;
+    padding-bottom: 36px;
   }
 }
 
 
-@media (min-width: 321px) {
+@media (min-width: 321px) and (max-width: 1279px) {
   .footer {
 padding-left: 15.62%;
 padding-right: 15.62%;
-padding-bottom: 4.69%;
+padding-bottom: 60px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .footer {
+padding-left: 200px;
+padding-right: 200px;
+padding-bottom: 60px;
   }
 }
