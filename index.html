@@ -11,81 +11,73 @@
 <body class="root">
     <div class="page">
         <header class="header">
-            <img class="header__logo image" alt="Место" src="./images/logo.png">
-            <div class="header__line"></div>
+            <img class="header__logo image" alt="Место" src="./images/logo.svg">
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__avatar-border">
-                    <img class="profile__avatar image" alt="Аватар" src="./images/avatar.jpg">
-                </div>
+                <img class="profile__avatar image" alt="Аватар" src="./images/avatar.jpg">
                 <div class="profile__info">
-                    <h1 class="profile__name root">Жак-Ив Кусто</h1>
-                    <p class="profile__description root">Исследователь океана</p>
-                    <nav>
-                        <img class="profile__edit-button image" alt="Кнопка редактирования"
-                            src="./images/EditButton.png">
-                    </nav>
+                    <h1 class="profile__name text">Жак-Ив Кусто</h1>
+                    <p class="profile__description text">Исследователь океана</p>
+                        <button class="profile__edit-button button image" type="button" aria-label="Редактировать профиль"></button>
                 </div>
-                <button class="profile__add-button">
-                    <img class="profile__add-button-icon image" src="./images/Vector.png" alt="Кнопка добавления">
+                <button class="profile__add-button button" type="button" aria-label="Добавить контент">
+                    <img class="profile__add-button-icon image" src="./images/Vector.svg" alt="Кнопка добавления">
                 </button>
             </section>
             <section class="grid-elements">
                 <div class="grid-item">
                     <img class="grid-item__photo" src="./images/Karachaevo-Cherkesk.png" alt="Карачаевск">
-                    <h2 class="grid-item__title root">Карачаевск</h2>
-                    <div class="grid-item__like image"></div>
+                    <h2 class="grid-item__title text">Карачаевск</h2>
+                    <button type="button" class="grid-item__like button image"></button>
                 </div>
-                <div class="grid-item">
+                <article class="grid-item">
                     <img class="grid-item__photo" src="./images/Elbrus.png" alt="Эльбрус">
-                    <h2 class="grid-item__title root">Гора Эльбрус</h2>
-                    <div class="grid-item__like image"></div>
-                </div>
-                <div class="grid-item">
+                    <h2 class="grid-item__title text">Гора Эльбрус</h2>
+                    <button type="button" class="grid-item__like button image"></button>
+                </article>
+                <article class="grid-item">
                     <img class="grid-item__photo" src="./images/Dombai.png" alt="Домабай">
-                    <h2 class="grid-item__title root">Домбай</h2>
-                    <div class="grid-item__like image"></div>
-                </div>
-                <div class="grid-item">
+                    <h2 class="grid-item__title text">Домбай</h2>
+                    <button type="button" class="grid-item__like button image"></button>
+                </article>
+                <article class="grid-item">
                     <img class="grid-item__photo" src="./images/Elbrus.png" alt="Эльбрус">
-                    <h2 class="grid-item__title root">Гора Эльбрус</h2>
-                    <div class="grid-item__like image"></div>
-                </div>
-                <div class="grid-item">
+                    <h2 class="grid-item__title text">Гора Эльбрус</h2>
+                    <button type="button" class="grid-item__like button image"></button>
+                </article>
+                <article class="grid-item">
                     <img class="grid-item__photo" src="./images/Dombai.png" alt="Домабай">
-                    <h2 class="grid-item__title root">Домбай</h2>
-                    <div class="grid-item__like image"></div>
-                </div>
-                <div class="grid-item">
+                    <h2 class="grid-item__title text">Домбай</h2>
+                    <button type="button" class="grid-item__like button image"></button>
+                </article>
+                <article class="grid-item">
                     <img class="grid-item__photo" src="./images/Karachaevo-Cherkesk.png" alt="Карачаевск">
-                    <h2 class="grid-item__title root">Карачаево-Черкесия</h2>
-                    <div class="grid-item__like image"></div>
-                </div>
+                    <h2 class="grid-item__title text">Карачаево-Черкесия</h2>
+                    <button type="button" class="grid-item__like button image"></button>
+                </article>
             </section>
         </main>
         <footer class="footer">
-            <h3 class="footer__copyright root">&copy; 2022 Кувшинова Софья</h3>
+            <p class="footer__copyright text">&copy; 2022 Кувшинова Софья</p>
         </footer>
-        <section class="popup">
+        <div class="popup">
             <div class="popup__container">
-                <img alt="Закрывающий крестик" class="popup__close-icon image" src="./images/CloseIcon.png">
-                <form class="form">
-                    <h2 class="form__title root">Редактировать профиль</h2>
+                <button type="button" class="popup__close-icon button image" aria-label="Закрыть форму"></button>
+                <form class="form" name="Редактор профиля">
+                    <h2 class="form__title text">Редактировать профиль</h2>
                     <fieldset class="form__input-container">
-                        <input type="text" class="form__item form__item-name root" placeholder="Имя"
+                        <input type="text" name="name" class="form__input form__input_value_name text" placeholder="Имя"
                             value="Жак-Ив Кусто" required>
-                        <input type="text" class="form__item form__item-job root" placeholder="О себе"
+                        <input type="text" name="job" class="form__input form__input_value_job text" placeholder="О себе"
                             value="Исследователь океана" required>
                     </fieldset>
-                    <fieldset class="form__handlers root">
-                        <input type="submit" class="form__save-button" value="Сохранить">
-                    </fieldset>
+                    <button type="submit" class="form__save-button button" value="Сохранить" aria-label="Сохранить данные">Сохранить</button>
                 </form>
             </div>
-        </section>
+        </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

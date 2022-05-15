@@ -1,12 +1,12 @@
 .grid-item__like {
-  background-image: url("../../../images/like.png");
+  background-image: url("../../../images/like.svg");
+background-color: #fff;;
   width: 22px;
   height: 19px;
   margin: 30px 20px 30px;
   grid-area: like;
   justify-self: end;
   transition: opacity 0.3s ease;
-  cursor: url("../../../images/cursor.png"), pointer;
 }
 
 .grid-item__like:hover {

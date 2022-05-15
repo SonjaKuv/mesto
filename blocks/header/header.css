@@ -3,29 +3,21 @@
   flex-direction: column;
   max-width: 880px;
   margin: 0 auto;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);;
+  padding-top: 45px;
+  padding-bottom: 41px;
 }
 
 @media (max-width: 320px) {
   .header {
     padding-top: 28px;
-    padding-bottom: 42px;
+    padding-bottom: 31.6px;
   }
 }
 
-@media (min-width: 321px) and (max-width: 1279px) {
+@media (min-width: 321px) {
   .header {
-    padding-top: 45px;
-    padding-left: 15.62%;
-    padding-right: 15.62%;
-    padding-bottom: 40px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .header {
-    padding-top: 45px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 40px;
+    margin-left: 15.625%;
+    margin-right: 15.625%;
   }
 }

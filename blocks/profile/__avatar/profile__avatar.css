@@ -1,4 +1,18 @@
 .profile__avatar {
-  width: 168.75px;
-  height: 127.5px;
+  width: 120px;
+  height: 120px;
+ overflow: hidden;
+  border-radius: 120px;
+}
+
+@media (max-width: 959px) {
+  .profile__avatar {
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 960px) {
+  .profile__avatar {
+    margin-left: 0;
+  }
 }

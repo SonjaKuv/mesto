@@ -1,6 +1,11 @@
 .profile__description {
   grid-area: descr;
   font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+text-overflow: ellipsis;  
+ white-space: nowrap;   
+overflow: hidden;
 }
 
 @media (max-width: 959px) {
@@ -8,12 +13,6 @@
     font-size: 14px;
     line-height: 17px;
     margin: 0 auto;
-  }
-}
-
-@media (min-width: 960px) {
-  .profile__description {
-    font-size: 18px;
-    line-height: 22px;
+    max-width: 282px;
   }
 }

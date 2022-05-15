@@ -3,10 +3,8 @@
   background-color: #fff;
   border-radius: 10px;
   width: 282px;
-
   margin: 0 auto;
   grid-template-areas:
     "photo photo"
     "title like";
-  height: 361px;
 }

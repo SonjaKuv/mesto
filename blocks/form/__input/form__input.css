@@ -1,4 +1,4 @@
-.form__item {
+.form__input {
   border: 0;
   width: 100%;
   box-sizing: border-box;
@@ -11,6 +11,6 @@
   padding-bottom: 7px;
 }
 
-.form__item:last-child {
+.form__input:last-child {
   margin-bottom: 0;
 }

@@ -1,18 +1,15 @@
 .profile__edit-button {
+  background-image: url(../../../images/EditButton.svg);
   grid-area: button;
   transition: opacity 0.3s ease;
-  cursor: url("../../../images/cursor.png"), pointer;
+    width: 18px;
+    height: 18px;
+background-color: #000;
+    background-size: contain;
 }
 
 .profile__edit-button:hover {
   opacity: 0.6;
-}
-
-@media (max-width: 959px) {
-  .profile__edit-button {
-    width: 18px;
-    height: 18px;
-  }
 }
 
 @media (min-width: 960px) {
