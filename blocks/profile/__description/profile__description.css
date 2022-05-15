@@ -1,11 +1,11 @@
 .profile__description {
   grid-area: descr;
   font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-text-overflow: ellipsis;  
- white-space: nowrap;   
-overflow: hidden;
+  font-size: 18px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (max-width: 959px) {

@@ -2,10 +2,10 @@
   background-image: url(../../../images/EditButton.svg);
   grid-area: button;
   transition: opacity 0.3s ease;
-    width: 18px;
-    height: 18px;
-background-color: #000;
-    background-size: contain;
+  width: 18px;
+  height: 18px;
+  background-color: #000;
+  background-size: contain;
 }
 
 .profile__edit-button:hover {

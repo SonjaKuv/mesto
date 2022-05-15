@@ -4,10 +4,10 @@
   margin: 0 auto;
   max-width: 880px;
   justify-content: center;
-    padding-left: 15.625%;
-    padding-right: 15.625%;
-    padding-bottom: 66px;
-    gap: 20px 17px;
+  padding-left: 15.625%;
+  padding-right: 15.625%;
+  padding-bottom: 66px;
+  gap: 20px 17px;
 }
 
 @media (max-width: 500px) {

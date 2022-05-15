@@ -1,8 +1,8 @@
 .header__logo {
   display: flex;
-    width: 142px;
-    height: 33px;
-    margin-left: 0;
+  width: 142px;
+  height: 33px;
+  margin-left: 0;
 }
 
 @media (max-width: 320px) {

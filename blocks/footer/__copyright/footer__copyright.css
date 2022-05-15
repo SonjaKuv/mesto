@@ -1,8 +1,8 @@
 .footer__copyright {
   font-weight: 400;
   color: #545454;
-    font-size: 18px;
-    line-height: 22px;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 @media (max-width: 320px) {
@@ -11,4 +11,3 @@
     line-height: 17px;
   }
 }
-

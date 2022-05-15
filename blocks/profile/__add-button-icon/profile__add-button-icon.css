@@ -1,6 +1,6 @@
 .profile__add-button-icon {
   margin: auto auto;
-width: 22px;
+  width: 22px;
 }
 
 @media (max-width: 959px) {
@@ -8,5 +8,3 @@ width: 22px;
     width: 16px;
   }
 }
-
-

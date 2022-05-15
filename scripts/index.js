@@ -12,10 +12,11 @@ let profileJob = document.querySelector('.profile__description');
 
 
 function callPopup() {
-if (popup.classList.contains('popup_opened')) {
-popup.classList.remove('popup_opened')}
-else {
-popup.classList.add('popup_opened')}
+    if (popup.classList.contains('popup_opened')) {
+        popup.classList.remove('popup_opened')
+    } else {
+        popup.classList.add('popup_opened')
+    }
 }
 
 

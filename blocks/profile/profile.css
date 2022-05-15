@@ -4,8 +4,8 @@
   max-width: 880px;
   padding-top: 40px;
   padding-bottom: 50px;
-    padding-left: 15.625%;
-    padding-right: 15.625%;
+  padding-left: 15.625%;
+  padding-right: 15.625%;
 }
 
 @media (max-width: 959px) {

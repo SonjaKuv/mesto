@@ -1,25 +1,25 @@
 .popup__container {
   display: grid;
-grid-template-columns: auto 470px 32px auto;
-    grid-template-rows: auto 330px auto;
-    grid-template-areas:
-        ". . close ."
-        ". form form ."
-        ". . . .";
-gap: 8px;
-justify-items: center;
+  grid-template-columns: auto 470px 32px auto;
+  grid-template-rows: auto 330px auto;
+  grid-template-areas:
+    ". . close ."
+    ". form form ."
+    ". . . .";
+  gap: 8px;
+  justify-items: center;
   width: 100%;
   height: 100%;
 }
 
 @media (max-width: 769px) {
-.popup__container {
-grid-template-columns: auto 282px auto;
+  .popup__container {
+    grid-template-columns: auto 282px auto;
     grid-template-areas:
-        ". close ."
-        ". form ."
-        ". . .";
-gap: 16px;
-justify-items: end;
-}
+      ". close ."
+      ". form ."
+      ". . .";
+    gap: 16px;
+    justify-items: end;
+  }
 }
