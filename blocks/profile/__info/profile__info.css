@@ -3,7 +3,6 @@
   grid-template-areas:
     "name button"
     "descr descr";
-  align-items: end;
   row-gap: 6px;
   column-gap: 18px;
   margin: auto auto auto 30px;
