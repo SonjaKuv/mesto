@@ -8,16 +8,9 @@
   padding-bottom: 41px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 959px) {
   .header {
     padding-top: 28px;
     padding-bottom: 31.6px;
-  }
-}
-
-@media (min-width: 321px) {
-  .header {
-    margin-left: 15.625%;
-    margin-right: 15.625%;
   }
 }

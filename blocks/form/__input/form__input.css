@@ -1,4 +1,6 @@
 .form__input {
+margin: 0 0 30px 0;
+padding: 0 0 7px 0;
   border: 0;
   width: 100%;
   box-sizing: border-box;
@@ -7,8 +9,6 @@
   font-size: 14px;
   line-height: 17px;
   color: #000;
-  margin-bottom: 30px;
-  padding-bottom: 7px;
 }
 
 .form__input:last-child {

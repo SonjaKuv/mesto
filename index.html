@@ -10,20 +10,20 @@
   <body class="root">
     <div class="page">
       <header class="header">
-        <img class="header__logo image" alt="Место" src="./images/logo.svg" />
+        <img class="header__logo" alt="Место" src="./images/logo.svg" />
       </header>
       <main class="content">
         <section class="profile">
           <img
-            class="profile__avatar image"
+            class="profile__avatar"
             alt="Аватар"
             src="./images/avatar.jpg"
           />
           <div class="profile__info">
-            <h1 class="profile__name text">Жак-Ив Кусто</h1>
-            <p class="profile__description text">Исследователь океана</p>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__description">Исследователь океана</p>
             <button
-              class="profile__edit-button button image"
+              class="profile__edit-button button"
               type="button"
               aria-label="Редактировать профиль"
             ></button>
@@ -34,39 +34,21 @@
             aria-label="Добавить контент"
           >
             <img
-              class="profile__add-button-icon image"
+              class="profile__add-button-icon"
               src="./images/Vector.svg"
               alt="Кнопка добавления"
             />
           </button>
         </section>
-        <section class="grid-elements">
-          <div class="grid-item">
+        <section class="grid-elements" aria-label="Заголовок">
+          <article class="grid-item">
             <img
               class="grid-item__photo"
               src="./images/Karachaevo-Cherkesk.png"
               alt="Карачаевск"
             />
-            <h2 class="grid-item__title text">Карачаевск</h2>
-            <button type="button" class="grid-item__like button image"></button>
-          </div>
-          <article class="grid-item">
-            <img
-              class="grid-item__photo"
-              src="./images/Elbrus.png"
-              alt="Эльбрус"
-            />
-            <h2 class="grid-item__title text">Гора Эльбрус</h2>
-            <button type="button" class="grid-item__like button image"></button>
-          </article>
-          <article class="grid-item">
-            <img
-              class="grid-item__photo"
-              src="./images/Dombai.png"
-              alt="Домабай"
-            />
-            <h2 class="grid-item__title text">Домбай</h2>
-            <button type="button" class="grid-item__like button image"></button>
+            <h2 class="grid-item__title">Карачаевск</h2>
+            <button type="button" class="grid-item__like button"></button>
           </article>
           <article class="grid-item">
             <img
@@ -74,8 +56,8 @@
               src="./images/Elbrus.png"
               alt="Эльбрус"
             />
-            <h2 class="grid-item__title text">Гора Эльбрус</h2>
-            <button type="button" class="grid-item__like button image"></button>
+            <h2 class="grid-item__title">Гора Эльбрус</h2>
+            <button type="button" class="grid-item__like button"></button>
           </article>
           <article class="grid-item">
             <img
@@ -83,8 +65,26 @@
               src="./images/Dombai.png"
               alt="Домабай"
             />
-            <h2 class="grid-item__title text">Домбай</h2>
-            <button type="button" class="grid-item__like button image"></button>
+            <h2 class="grid-item__title">Домбай</h2>
+            <button type="button" class="grid-item__like button"></button>
+          </article>
+          <article class="grid-item">
+            <img
+              class="grid-item__photo"
+              src="./images/Elbrus.png"
+              alt="Эльбрус"
+            />
+            <h2 class="grid-item__title">Гора Эльбрус</h2>
+            <button type="button" class="grid-item__like button"></button>
+          </article>
+          <article class="grid-item">
+            <img
+              class="grid-item__photo"
+              src="./images/Dombai.png"
+              alt="Домабай"
+            />
+            <h2 class="grid-item__title">Домбай</h2>
+            <button type="button" class="grid-item__like button"></button>
           </article>
           <article class="grid-item">
             <img
@@ -92,28 +92,28 @@
               src="./images/Karachaevo-Cherkesk.png"
               alt="Карачаевск"
             />
-            <h2 class="grid-item__title text">Карачаево-Черкесия</h2>
-            <button type="button" class="grid-item__like button image"></button>
+            <h2 class="grid-item__title">Карачаево-Черкесия</h2>
+            <button type="button" class="grid-item__like button"></button>
           </article>
         </section>
       </main>
       <footer class="footer">
-        <p class="footer__copyright text">&copy; 2022 Кувшинова Софья</p>
+        <p class="footer__copyright">&copy; 2022 Кувшинова Софья</p>
       </footer>
       <div class="popup">
         <div class="popup__container">
           <button
             type="button"
-            class="popup__close-icon button image"
+            class="popup__close-icon button"
             aria-label="Закрыть форму"
           ></button>
           <form class="form" name="Редактор профиля">
-            <h2 class="form__title text">Редактировать профиль</h2>
+            <h2 class="form__title">Редактировать профиль</h2>
             <fieldset class="form__input-container">
               <input
                 type="text"
                 name="name"
-                class="form__input form__input_value_name text"
+                class="form__input form__input_value_name"
                 placeholder="Имя"
                 value="Жак-Ив Кусто"
                 required
@@ -121,7 +121,7 @@
               <input
                 type="text"
                 name="job"
-                class="form__input form__input_value_job text"
+                class="form__input form__input_value_job"
                 placeholder="О себе"
                 value="Исследователь океана"
                 required

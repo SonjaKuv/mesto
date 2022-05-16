@@ -4,7 +4,7 @@
   transition: opacity 0.3s ease;
   width: 18px;
   height: 18px;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0);
   background-size: contain;
 }
 

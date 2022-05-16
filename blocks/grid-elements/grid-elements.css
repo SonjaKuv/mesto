@@ -6,7 +6,7 @@
   justify-content: center;
   padding-left: 15.625%;
   padding-right: 15.625%;
-  padding-bottom: 66px;
+  padding-bottom: 68px;
   gap: 20px 17px;
 }
 
@@ -14,6 +14,6 @@
   .grid-elements {
     padding-left: 5.94%;
     padding-right: 5.94%;
-    padding-bottom: 48px;
+    padding-bottom: 50px;
   }
 }
