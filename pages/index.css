@@ -34,6 +34,6 @@
 @import url("../blocks/form/__title/form__title.css");
 @import url("../blocks/form/__input-container/form__input-container.css");
 @import url("../blocks/form/__input/form__input.css");
-@import url("../blocks/form/__save-button/form__save-button.css");
+@import url("../blocks/form/__submit-button/form__submit-button.css");
 
 @import url("../blocks/popup/_opened/popup_opened.css");
