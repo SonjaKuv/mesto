@@ -5,7 +5,6 @@ const popupAdd = document.querySelector('.popup_type_add');
 const closeEditForm = popupEdit.querySelector('.popup__close-icon');
 const closeAddForm = popupAdd.querySelector('.popup__close-icon');
 const cardsContainer = document.querySelector('.grid-elements');
-const trashButton = document.querySelector('.grid-item__trash');
 
 const initialCards = [
   {
@@ -44,9 +43,6 @@ let profileJob = document.querySelector('.profile__description');
 
 let titleInput = formElementAdd.querySelector('.form__input_value_title');
 let linkInput = formElementAdd.querySelector('.form__input_value_link'); 
-//let itemTitle = document.querySelector('.grid-item__title');
-//let itemImage = document.querySelector('.grid-item__photo');
-
 
 
 //открытие окна редактирования профиля, значения инпутов берутся со страницы
@@ -62,7 +58,6 @@ function openPopupAdd() {
     popupAdd.classList.add('popup_opened');
 };
 
-
 //заполняем страницу контентом из массива
 function renderList(data) {
 data.forEach((item) => renderItem(item))
@@ -72,6 +67,7 @@ function renderItem(data) {
         const cardTemplate = document.querySelector('.item-template').content;
         const cardElement = cardTemplate.querySelector('.grid-item').cloneNode(true);
         const likeButton = cardElement.querySelector('.grid-item__like');
+const trashButton = cardElement.querySelector('.grid-item__trash');
 
         cardElement.querySelector('.grid-item__title').textContent = data.name;
         cardElement.querySelector('.grid-item__photo').src = data.link;
@@ -81,9 +77,12 @@ likeButton.addEventListener('click', function (evt) {
    evt.target.classList.toggle('grid-item__like_active');
 }); 
 
-trashButton,addEventListener('click', function (evt) {
-evt.target.closest('.grid-item').remove();
+
+trashButton.addEventListener('click', function (evt) {
+let buttonElement = evt.target;
+let cardElement= buttonElement.closest('.grid-item').remove();
 });
+
         cardsContainer.prepend(cardElement);
     };
 
