@@ -5,6 +5,7 @@ const popupAdd = document.querySelector('.popup_type_add');
 const closeEditForm = popupEdit.querySelector('.popup__close-icon');
 const closeAddForm = popupAdd.querySelector('.popup__close-icon');
 const cardsContainer = document.querySelector('.grid-elements');
+const popupView = document.querySelector('.popup_type_view');
 
 const initialCards = [
   {
@@ -58,6 +59,8 @@ function openPopupAdd() {
     popupAdd.classList.add('popup_opened');
 };
 
+
+
 //заполняем страницу контентом из массива
 function renderList(data) {
 data.forEach((item) => renderItem(item))
@@ -77,10 +80,16 @@ likeButton.addEventListener('click', function (evt) {
    evt.target.classList.toggle('grid-item__like_active');
 }); 
 
-
+//удаление контента
 trashButton.addEventListener('click', function (evt) {
 let buttonElement = evt.target;
 let cardElement= buttonElement.closest('.grid-item').remove();
+});
+
+cardElement.addEventListener('click', function (evt) {
+popupView.classList.add('popup_opened');
+popupView.querySelector('.popup__picture').src = `${evt.target.src}`;
+popupView.querySelector('.popup__title').textContent = evt.target.;
 });
 
         cardsContainer.prepend(cardElement);

@@ -1,0 +1,25 @@
+.popup__view-container {
+  display: grid;
+  grid-template-columns: auto auto 32px auto;
+  grid-template-rows: auto 75vh auto;
+  grid-template-areas:
+    ". . close ."
+    ". img img ."
+". name name .";
+  gap: 8px;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 769px) {
+  .popup__view-container {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      ". close ."
+      ". form ."
+      ". name .";
+    gap: 16px;
+    justify-items: end;
+  }
+}
