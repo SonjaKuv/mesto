@@ -4,7 +4,9 @@
   border-radius: 10px;
   width: 282px;
   margin: 0 auto;
+overflow: hidden;
   grid-template-areas:
     "photo photo"
     "title like";
+position: relative;
 }

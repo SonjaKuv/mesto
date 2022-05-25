@@ -5,6 +5,7 @@ const popupAdd = document.querySelector('.popup_type_add');
 const closeEditForm = popupEdit.querySelector('.popup__close-icon');
 const closeAddForm = popupAdd.querySelector('.popup__close-icon');
 const cardsContainer = document.querySelector('.grid-elements');
+const trashButton = document.querySelector('.grid-item__trash');
 
 const initialCards = [
   {
@@ -79,6 +80,10 @@ function renderItem(data) {
 likeButton.addEventListener('click', function (evt) {
    evt.target.classList.toggle('grid-item__like_active');
 }); 
+
+trashButton,addEventListener('click', function (evt) {
+evt.target.closest('.grid-item').remove();
+});
         cardsContainer.prepend(cardElement);
     };
 
