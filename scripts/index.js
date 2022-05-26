@@ -35,14 +35,14 @@ const initialCards = [{
     }
 ];
 
-let formElementEdit = popupEdit.querySelector('.form');
-let formElementAdd = popupAdd.querySelector('.form');
-let nameInput = formElementEdit.querySelector('.form__input_value_name');
-let jobInput = formElementEdit.querySelector('.form__input_value_job');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__description');
-let titleInput = formElementAdd.querySelector('.form__input_value_title');
-let linkInput = formElementAdd.querySelector('.form__input_value_link');
+const formElementEdit = popupEdit.querySelector('.form');
+const formElementAdd = popupAdd.querySelector('.form');
+const nameInput = formElementEdit.querySelector('.form__input_value_name');
+const jobInput = formElementEdit.querySelector('.form__input_value_job');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__description');
+const titleInput = formElementAdd.querySelector('.form__input_value_title');
+const linkInput = formElementAdd.querySelector('.form__input_value_link');
 
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
