@@ -1,5 +1,5 @@
 .popup__picture {
-max-width: 75vw;
-max-height: 75vh;
-grid-area: img;
+  max-width: 75vw;
+  max-height: 75vh;
+  grid-area: img;
 }
