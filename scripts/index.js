@@ -88,9 +88,9 @@ function renderItem(data) {
     //Вызов окна просмотра и заполнение его контентом нажатого элемента
     imageView.addEventListener('click', function (evt) {
         popupView.classList.add('popup_opened');
-        popupView.querySelector('.popup__picture').src = `${evt.target.src}`;
-        popupView.querySelector('.popup__title').textContent = `${evt.target.alt}`;
-        popupView.querySelector('.popup__title').alt = `${evt.target.alt}`;
+        popupView.querySelector('.card__picture').src = `${evt.target.src}`;
+        popupView.querySelector('.card__title').textContent = `${evt.target.alt}`;
+        popupView.querySelector('.card__title').alt = `${evt.target.alt}`;
     });
 
     //Добавление карточек в контейнер
