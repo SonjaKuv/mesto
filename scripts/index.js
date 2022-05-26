@@ -6,6 +6,7 @@ const closeEditForm = popupEdit.querySelector('.popup__close-icon');
 const closeAddForm = popupAdd.querySelector('.popup__close-icon');
 const cardsContainer = document.querySelector('.grid-elements');
 const popupView = document.querySelector('.popup_type_view');
+const closeViewWindow = popupView.querySelector('.popup__close-icon');
 
 const initialCards = [
   {
@@ -73,7 +74,8 @@ function renderItem(data) {
 const trashButton = cardElement.querySelector('.grid-item__trash');
 
         cardElement.querySelector('.grid-item__title').textContent = data.name;
-        cardElement.querySelector('.grid-item__photo').src = data.link;
+cardElement.querySelector('.grid-item__photo').alt = data.name;
+cardElement.querySelector('.grid-item__photo').src = data.link;
 
 // переключение лайка 
 likeButton.addEventListener('click', function (evt) {
@@ -86,10 +88,12 @@ let buttonElement = evt.target;
 let cardElement= buttonElement.closest('.grid-item').remove();
 });
 
+
 cardElement.addEventListener('click', function (evt) {
 popupView.classList.add('popup_opened');
 popupView.querySelector('.popup__picture').src = `${evt.target.src}`;
-popupView.querySelector('.popup__title').textContent = evt.target.;
+popupView.querySelector('.popup__title').textContent = `${evt.target.alt}`;
+popupView.querySelector('.popup__title').alt = `${evt.target.alt}`;
 });
 
         cardsContainer.prepend(cardElement);
@@ -116,10 +120,14 @@ function closePopupEdit() {
 popupEdit.classList.remove('popup_opened');
 };
 
-//
 //закрытие формы добавления контента
 function closePopupAdd(e) {
 popupAdd.classList.remove('popup_opened');
+};
+
+//закрытие окна просмотра
+function closePopupView(e) {
+popupView.classList.remove('popup_opened');
 };
 
 //редактируем профиль
@@ -137,5 +145,6 @@ editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
 closeEditForm.addEventListener('click', closePopupEdit);
 closeAddForm.addEventListener('click', closePopupAdd);
+closeViewWindow.addEventListener('click', closePopupView);
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
