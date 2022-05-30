@@ -65,11 +65,18 @@ function createCard(data) {
 
     //Вызов окна просмотра и заполнение его контентом нажатого элемента
     imageView.addEventListener('click', function (evt) {
-        openPopup(popupView);
-        popupView.querySelector('.card__picture').src = `${evt.target.src}`;
-        popupView.querySelector('.card__title').textContent = `${evt.target.alt}`;
-        popupView.querySelector('.card__title').alt = `${evt.target.alt}`;
+        fillPopup(evt)
     });
+
+    function fillPopup(evt) {
+        const popupViewPicture = popupView.querySelector('.card__picture');
+        const popupViewText = popupView.querySelector('.card__title');
+        let data = evt.target;
+        openPopup(popupView);
+        popupViewPicture.src = `${data.src}`;
+        popupViewText.textContent = `${data.alt}`;
+        popupViewPicture.alt = `${data.alt}`;
+    };
 
     return cardElement;
 };
