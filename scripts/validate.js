@@ -9,7 +9,7 @@ const validConsts = {
 };
 
 //Проверяем валидацию инпутов, перед началом работы с формой
-const validationPopup = (formElement, validConsts) => {
+const validatePopupInputs = (formElement, validConsts) => {
     const inputList = Array.from(formElement.querySelectorAll(validConsts.inputElement));
     const buttonElement = formElement.querySelector(validConsts.buttonElementSelector);
     inputList.forEach((inputElement) => {
@@ -24,10 +24,10 @@ const validationPopup = (formElement, validConsts) => {
 const toggleButtonState = (inputList, buttonElement, validConsts) => {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(validConsts.inactiveButton);
-        buttonElement.setAttribute('disabled', 'disabled');
+        buttonElement.disabled = true;
     } else {
         buttonElement.classList.remove(validConsts.inactiveButton);
-        buttonElement.removeAttribute('disabled');
+        buttonElement.disabled = false;
     }
 };
 
@@ -58,23 +58,9 @@ const showInputError = (formElement, inputElement, errorMessage, validConsts) =>
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(validConsts.inputError);
     errorElement.classList.add(validConsts.errorClass);
-    callErrorMessage(inputElement, errorElement, errorMessage);
+    errorElement.textContent = errorMessage;
 };
 
-//Условия для вывода ошибки
-const callErrorMessage = (inputElement, errorElement, errorMessage) => {
-    if (inputElement.validity.valueMissing && inputElement.type !== "url") {
-        errorElement.textContent = 'Вы пропустили это поле.'
-    } else if (inputElement.type === "url") {
-        errorElement.textContent = 'Введите адрес сайта.'
-    } else if (inputElement.validity.tooShort && !inputElement.validity.valueMissing) {
-        errorElement.textContent = errorMessage
-    } else if (inputElement.validity.tooLong && !inputElement.validity.valueMissing) {
-        errorElement.textContent = errorMessage
-    } else {
-        errorElement.textContent = ''
-    }
-};
 
 //Скрытие ошибки
 const hideInputError = (formElement, inputElement, validConsts) => {

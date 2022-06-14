@@ -4,6 +4,8 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupView = document.querySelector('.popup_type_view');
 const popups = [popupEdit, popupAdd, popupView];
+const popupViewPicture = popupView.querySelector('.card__picture');
+const popupViewText = popupView.querySelector('.card__title');
 const closeIcons = Array.from(document.querySelectorAll('.popup__close-icon'));
 const cardsContainer = document.querySelector('.grid-elements');
 const cardTemplate = document.querySelector('.item-template').content;
@@ -19,23 +21,24 @@ const forms = Array.from(document.querySelectorAll('.form'));
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
 const openPopupEdit = (evt) => {
-    openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+    openPopup(popupEdit);
 };
 
 //Изменяем видимость попапа 
 const openPopup = (item) => {
     item.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
 };
 
 //Для каждого элемента массива выполняем колбэк функцию
-const renderList = (data) => {
-    data.forEach((item) => renderItem(item))
+const renderCardsList = (data) => {
+    data.forEach((item) => renderCardItem(item))
 };
 
 //Добавление созданных карточек в контейнер
-const renderItem = (data) => {
+const renderCardItem = (data) => {
     cardsContainer.prepend(createCard(data));
 };
 
@@ -54,31 +57,29 @@ const createCard = (data) => {
     });
 
     const fillPopup = (evt) => {
-        const popupViewPicture = popupView.querySelector('.card__picture');
-        const popupViewText = popupView.querySelector('.card__title');
         let data = evt.target;
         openPopup(popupView);
-        popupViewPicture.src = `${data.src}`;
-        popupViewText.textContent = `${data.alt}`;
-        popupViewPicture.alt = `${data.alt}`;
+        popupViewPicture.src = data.src;
+        popupViewText.textContent = data.alt;
+        popupViewPicture.alt = data.alt;
     };
 
     return cardElement;
 };
 
 //Добавление контента
-const formSubmitHandlerAdd = (evt) => {
+const addContent = (evt) => {
     evt.preventDefault();
     let name = titleInput.value;
     let link = linkInput.value;
-    renderItem({
+    renderCardItem({
         name,
         link
     });
-    closeButtonHandler(evt);
+    handleCloseEvent(evt);
 };
 
-renderList(initialCards);
+renderCardsList(initialCards);
 
 //Переключение лайка
 const likeCard = (evt) => {
@@ -91,43 +92,44 @@ const likeCard = (evt) => {
 const removeCard = (evt) => {
     if (evt.target.classList.contains('grid-item__trash')) {
         let buttonElement = evt.target;
-        let cardElement = buttonElement.closest('.grid-item').remove();
+        buttonElement.closest('.grid-item').remove();
     }
 };
 
 //Редактирование профиля
-const formSubmitHandlerEdit = (evt) => {
+const editProfile = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closeButtonHandler(evt);
+    handleCloseEvent(evt);
 };
 
 //Восстанавливаем стандартные значения формы
-const resetForm = (evt) => {
+const resetForms = (evt) => {
     forms.forEach((form) => {
         evt.target = form;
         form.reset();
-        validationPopup(form, validConsts)
+        validatePopupInputs(form, validConsts)
     })
 };
 
 //Находим ближайший попап для закрытия
-const closeButtonHandler = (evt) => {
+const handleCloseEvent = (evt) => {
     let element = evt.target.closest('.popup');
-    resetForm(evt);
+    resetForms(evt);
     closePopup(element);
 };
 
 //Закрытие любого попапа
 const closePopup = (element) => {
-    element.classList.remove('popup_opened')
+    element.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc);
 };
 
 //Закрытие попапа при нажатии на overlay
 const closePopupByOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
-        closeButtonHandler(evt);
+        handleCloseEvent(evt);
     }
 };
 
@@ -136,22 +138,22 @@ const closePopupByEsc = (evt) => {
     popups.forEach((popup) => {
         if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
             evt.target = popup;
-            closePopup(popup)
+            closePopup(popup);
         }
     });
 };
 
 //Закрытие попапа при нажатии на close-icon
 closeIcons.forEach((item) => {
-    item.addEventListener('click', closeButtonHandler)
+    item.addEventListener('click', handleCloseEvent)
 });
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', (evt) => {
     openPopup(popupAdd)
 });
-formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
-formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
+formElementEdit.addEventListener('submit', editProfile);
+formElementAdd.addEventListener('submit', addContent);
 
 cardsContainer.addEventListener('click', likeCard);
 cardsContainer.addEventListener('click', removeCard);
@@ -159,5 +161,3 @@ cardsContainer.addEventListener('click', removeCard);
 popups.forEach((popup) => {
     popup.addEventListener('click', closePopupByOverlay)
 });
-
-document.addEventListener('keydown', closePopupByEsc);
