@@ -15,31 +15,32 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
 const titleInput = formElementAdd.querySelector('.form__input_value_title');
 const linkInput = formElementAdd.querySelector('.form__input_value_link');
+const forms = Array.from(document.querySelectorAll('.form'));
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
-function openPopupEdit(evt) {
+const openPopupEdit = (evt) => {
     openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
 //Изменяем видимость попапа 
-function openPopup(item) {
-item.classList.add('popup_opened');
+const openPopup = (item) => {
+    item.classList.add('popup_opened');
 };
 
 //Для каждого элемента массива выполняем колбэк функцию
-function renderList(data) {
+const renderList = (data) => {
     data.forEach((item) => renderItem(item))
 };
 
 //Добавление созданных карточек в контейнер
-function renderItem(data) {
+const renderItem = (data) => {
     cardsContainer.prepend(createCard(data));
 };
 
 //Создание карточки и установка слушателей для неё
-function createCard(data) {
+const createCard = (data) => {
     const cardElement = cardTemplate.querySelector('.grid-item').cloneNode(true);
     const imageView = cardElement.querySelector('.grid-item__photo')
 
@@ -48,11 +49,11 @@ function createCard(data) {
     imageView.src = data.link;
 
     //Вызов окна просмотра и заполнение его контентом нажатого элемента
-    imageView.addEventListener('click',  (evt ) => {
+    imageView.addEventListener('click', (evt) => {
         fillPopup(evt)
     });
 
-    function fillPopup(evt) {
+    const fillPopup = (evt) => {
         const popupViewPicture = popupView.querySelector('.card__picture');
         const popupViewText = popupView.querySelector('.card__title');
         let data = evt.target;
@@ -66,7 +67,7 @@ function createCard(data) {
 };
 
 //Добавление контента
-function formSubmitHandlerAdd(evt) {
+const formSubmitHandlerAdd = (evt) => {
     evt.preventDefault();
     let name = titleInput.value;
     let link = linkInput.value;
@@ -74,29 +75,28 @@ function formSubmitHandlerAdd(evt) {
         name,
         link
     });
-    resetForm(evt);
     closeButtonHandler(evt);
 };
 
 renderList(initialCards);
 
 //Переключение лайка
-function likeCard(evt) {
-if (evt.target.classList.contains('grid-item__like')) {
-evt.target.classList.toggle('grid-item__like_active');
-}
+const likeCard = (evt) => {
+    if (evt.target.classList.contains('grid-item__like')) {
+        evt.target.classList.toggle('grid-item__like_active');
+    }
 };
 
 //Удаление карточки
-function removeCard(evt) {
- if (evt.target.classList.contains('grid-item__trash')) {
-let buttonElement = evt.target;
-let cardElement = buttonElement.closest('.grid-item').remove();
- }
+const removeCard = (evt) => {
+    if (evt.target.classList.contains('grid-item__trash')) {
+        let buttonElement = evt.target;
+        let cardElement = buttonElement.closest('.grid-item').remove();
+    }
 };
 
 //Редактирование профиля
-function formSubmitHandlerEdit(evt) {
+const formSubmitHandlerEdit = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
@@ -104,40 +104,47 @@ function formSubmitHandlerEdit(evt) {
 };
 
 //Восстанавливаем стандартные значения формы
-resetForm = (evt)  => {
-let form = evt.target.closest('.form');
-  form.reset();
+const resetForm = (evt) => {
+    forms.forEach((form) => {
+        evt.target = form;
+        form.reset();
+        popupValidation(form, validConsts)
+    })
 };
 
 //Находим ближайший попап для закрытия
-function closeButtonHandler(evt) {
+const closeButtonHandler = (evt) => {
     let element = evt.target.closest('.popup');
+    resetForm(evt);
     closePopup(element);
-//resetForm(evt);
 };
 
 //Закрытие любого попапа
-function closePopup(element) {
+const closePopup = (element) => {
     element.classList.remove('popup_opened')
 };
 
 //Закрытие попапа при нажатии на overlay
-function closePopupByOverlay(evt) {
-if (evt.target === evt.currentTarget) {
-closeButtonHandler(evt);
-}};
+const closePopupByOverlay = (evt) => {
+    if (evt.target === evt.currentTarget) {
+        closeButtonHandler(evt);
+    }
+};
 
 //Закрытие попапа при нажатии на Esc
-function closePopupByEsc(evt) {
-popups.forEach((popup) => {
-if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-evt.target = popup;
-closePopup(popup)}});
+const closePopupByEsc = (evt) => {
+    popups.forEach((popup) => {
+        if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
+            evt.target = popup;
+            closePopup(popup)
+        }
+    });
 };
 
 //Закрытие попапа при нажатии на close-icon
 closeIcons.forEach((item) => {
-item.addEventListener('click', closeButtonHandler)});
+    item.addEventListener('click', closeButtonHandler)
+});
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', (evt) => {
@@ -150,6 +157,7 @@ cardsContainer.addEventListener('click', likeCard);
 cardsContainer.addEventListener('click', removeCard);
 
 popups.forEach((popup) => {
-popup.addEventListener('click', closePopupByOverlay)});
+    popup.addEventListener('click', closePopupByOverlay)
+});
 
 document.addEventListener('keydown', closePopupByEsc);
