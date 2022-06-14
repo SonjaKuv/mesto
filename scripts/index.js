@@ -108,7 +108,7 @@ const resetForm = (evt) => {
     forms.forEach((form) => {
         evt.target = form;
         form.reset();
-        popupValidation(form, validConsts)
+        validationPopup(form, validConsts)
     })
 };
 

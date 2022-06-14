@@ -9,7 +9,7 @@ const validConsts = {
 };
 
 //Проверяем валидацию инпутов, перед началом работы с формой
-const popupValidation = (formElement, validConsts) => {
+const validationPopup = (formElement, validConsts) => {
     const inputList = Array.from(formElement.querySelectorAll(validConsts.inputElement));
     const buttonElement = formElement.querySelector(validConsts.buttonElementSelector);
     inputList.forEach((inputElement) => {
@@ -91,7 +91,7 @@ const hasInvalidInput = (inputList) => {
     })
 };
 
-//Добавляем слушатели для всех форм
+//Добавляем слушатели для всех форм (включаем ввалидацию)
 const enableValidation = (validConsts) => {
     const formList = Array.from(document.querySelectorAll(validConsts.formElement));
     formList.forEach((formElement) => {

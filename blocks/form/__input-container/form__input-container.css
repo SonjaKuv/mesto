@@ -2,11 +2,11 @@
   max-width: 358px;
   border: 0;
   padding: 0;
-  margin: 48px auto 30px auto;
+  margin: 0;
+  grid-area: fieldset;
 }
 
 @media (max-width: 769px) {
   .form__input-container {
-    margin: 75px 22px 47px 22px;
   }
 }
