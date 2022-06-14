@@ -1,4 +1,4 @@
-.popup__container {
+.popup-container {
   display: grid;
   grid-template-columns: auto 470px 32px auto;
   grid-template-rows: auto 330px auto;
@@ -13,7 +13,7 @@
 }
 
 @media (max-width: 769px) {
-  .popup__container {
+  .popup-container {
     grid-template-columns: auto 282px auto;
     grid-template-areas:
       ". close ."
