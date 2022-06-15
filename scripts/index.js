@@ -67,8 +67,8 @@ const createCard = (data) => {
     return cardElement;
 };
 
-//Добавление контента
-const addContent = (evt) => {
+//Устанавливаем значения инпутов для новой карточки
+const setNewCardInputValues = (evt) => {
     evt.preventDefault();
     let name = titleInput.value;
     let link = linkInput.value;
@@ -153,7 +153,7 @@ addButton.addEventListener('click', (evt) => {
     openPopup(popupAdd)
 });
 formElementEdit.addEventListener('submit', editProfile);
-formElementAdd.addEventListener('submit', addContent);
+formElementAdd.addEventListener('submit', setNewCardInputValues);
 
 cardsContainer.addEventListener('click', likeCard);
 cardsContainer.addEventListener('click', removeCard);
