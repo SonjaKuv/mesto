@@ -67,7 +67,7 @@ const createCard = (data) => {
     return cardElement;
 };
 
-//Устанавливаем значения инпутов для новой карточки
+//Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
     evt.preventDefault();
     const name = titleInput.value;
