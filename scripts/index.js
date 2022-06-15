@@ -57,7 +57,7 @@ const createCard = (data) => {
     });
 
     const fillPopup = (evt) => {
-        let data = evt.target;
+        const data = evt.target;
         openPopup(popupView);
         popupViewPicture.src = data.src;
         popupViewText.textContent = data.alt;
@@ -68,10 +68,10 @@ const createCard = (data) => {
 };
 
 //Устанавливаем значения инпутов для новой карточки
-const setNewCardInputValues = (evt) => {
+const handleAddCardSubmit = (evt) => {
     evt.preventDefault();
-    let name = titleInput.value;
-    let link = linkInput.value;
+    const name = titleInput.value;
+    const link = linkInput.value;
     renderCardItem({
         name,
         link
@@ -91,7 +91,7 @@ const likeCard = (evt) => {
 //Удаление карточки
 const removeCard = (evt) => {
     if (evt.target.classList.contains('grid-item__trash')) {
-        let buttonElement = evt.target;
+        const buttonElement = evt.target;
         buttonElement.closest('.grid-item').remove();
     }
 };
@@ -115,7 +115,7 @@ const resetForms = (evt) => {
 
 //Находим ближайший попап для закрытия
 const handleCloseEvent = (evt) => {
-    let element = evt.target.closest('.popup');
+    const element = evt.target.closest('.popup');
     resetForms(evt);
     closePopup(element);
 };
@@ -153,7 +153,7 @@ addButton.addEventListener('click', (evt) => {
     openPopup(popupAdd)
 });
 formElementEdit.addEventListener('submit', editProfile);
-formElementAdd.addEventListener('submit', setNewCardInputValues);
+formElementAdd.addEventListener('submit', handleAddCardSubmit);
 
 cardsContainer.addEventListener('click', likeCard);
 cardsContainer.addEventListener('click', removeCard);
