@@ -19,6 +19,8 @@ const titleInput = formElementAdd.querySelector('.form__input_value_title');
 const linkInput = formElementAdd.querySelector('.form__input_value_link');
 const forms = Array.from(document.querySelectorAll('.form'));
 
+import {Card} from '../scripts/Card.js';
+
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
 const openPopupEdit = (evt) => {
     nameInput.value = profileName.textContent;
@@ -42,6 +44,25 @@ const renderCardItem = (data) => {
     cardsContainer.prepend(createCard(data));
 };
 
+const createCard = (data) => {
+    Card(data);
+
+    //Вызов окна просмотра и заполнение его контентом нажатого элемента
+    imageView.addEventListener('click', (evt) => {
+        fillPopup(evt)
+    });
+
+    const fillPopup = (evt) => {
+        const data = evt.target;
+        openPopup(popupView);
+        popupViewPicture.src = data.src;
+        popupViewText.textContent = data.alt;
+        popupViewPicture.alt = data.alt;
+    };
+};
+
+
+/*
 //Создание карточки и установка слушателей для неё
 const createCard = (data) => {
     const cardElement = cardTemplate.querySelector('.grid-item').cloneNode(true);
@@ -66,6 +87,7 @@ const createCard = (data) => {
 
     return cardElement;
 };
+*/
 
 //Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
