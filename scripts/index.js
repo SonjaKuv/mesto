@@ -9,6 +9,7 @@ const popupViewText = popupView.querySelector('.card__title');
 const closeIcons = Array.from(document.querySelectorAll('.popup__close-icon'));
 const cardsContainer = document.querySelector('.grid-elements');
 const cardTemplate = document.querySelector('.item-template').content;
+const imageView = cardTemplate.querySelector('.grid-item__photo');
 const formElementEdit = popupEdit.querySelector('.form');
 const formElementAdd = popupAdd.querySelector('.form');
 const nameInput = formElementEdit.querySelector('.form__input_value_name');
@@ -19,7 +20,7 @@ const titleInput = formElementAdd.querySelector('.form__input_value_title');
 const linkInput = formElementAdd.querySelector('.form__input_value_link');
 const forms = Array.from(document.querySelectorAll('.form'));
 
-import {Card} from '../scripts/Card.js';
+import {initialCards as data, Card} from './Card.js';
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
 const openPopupEdit = (evt) => {
@@ -34,44 +35,6 @@ const openPopup = (item) => {
     document.addEventListener('keydown', closePopupByEsc);
 };
 
-//Для каждого элемента массива выполняем колбэк функцию
-const renderCardsList = (data) => {
-    data.forEach((item) => renderCardItem(item))
-};
-
-//Добавление созданных карточек в контейнер
-const renderCardItem = (data) => {
-    cardsContainer.prepend(createCard(data));
-};
-
-const createCard = (data) => {
-    Card(data);
-
-    //Вызов окна просмотра и заполнение его контентом нажатого элемента
-    imageView.addEventListener('click', (evt) => {
-        fillPopup(evt)
-    });
-
-    const fillPopup = (evt) => {
-        const data = evt.target;
-        openPopup(popupView);
-        popupViewPicture.src = data.src;
-        popupViewText.textContent = data.alt;
-        popupViewPicture.alt = data.alt;
-    };
-};
-
-
-/*
-//Создание карточки и установка слушателей для неё
-const createCard = (data) => {
-    const cardElement = cardTemplate.querySelector('.grid-item').cloneNode(true);
-    const imageView = cardElement.querySelector('.grid-item__photo')
-
-    cardElement.querySelector('.grid-item__title').textContent = data.name;
-    imageView.alt = data.name;
-    imageView.src = data.link;
-
     //Вызов окна просмотра и заполнение его контентом нажатого элемента
     imageView.addEventListener('click', (evt) => {
         fillPopup(evt)
@@ -85,23 +48,16 @@ const createCard = (data) => {
         popupViewPicture.alt = data.alt;
     };
 
-    return cardElement;
-};
-*/
 
 //Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
     evt.preventDefault();
     const name = titleInput.value;
     const link = linkInput.value;
-    renderCardItem({
-        name,
-        link
-    });
+    const card = new Card(name, title);
     handleCloseEvent(evt);
 };
 
-renderCardsList(initialCards);
 
 //Переключение лайка
 const likeCard = (evt) => {

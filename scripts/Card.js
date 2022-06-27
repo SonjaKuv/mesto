@@ -1,16 +1,40 @@
-import {data} from '../scripts/cards.js'
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 
 class Card {
-constructor(data) {
+constructor(data, cardSelector) {
     this._title = data.name;
     this._name = data.name;
     this._link = data.link;
-
+    this._cardSelector = cardSelector;
 }
 
 _getTemplate() {
  const cardElement = document
-    .querySelector('.item-template')
+    .querySelector(this._cardSelector)
     .content
     .querySelector('.grid-item')
     .cloneNode(true);
@@ -18,25 +42,49 @@ _getTemplate() {
   return cardElement;
 }
 
+/*
+_handleOpenPopup() {
+    popupImage.src = this._image;
+    popupElement.classList.add('popup_is-opened');
+  }
+
+  _handleClosePopup() {
+    popupImage.src = '';
+    popupElement.classList.remove('popup_is-opened');
+  }
+*/
+
+_setEventListeners() {
+      this._element.addEventListener('click', () => {
+      this._handleOpenPopup();
+    });
+popupCloseButton.addEventListener('click', () => {
+      this._handleClosePopup();
+    });
+  }
+
+
+
 generateCard() {
   this._element = this._getTemplate();
+  const imageView = this._element.querySelector('.grid-item__photo');
   this._element.querySelector('.grid-item__title').textContent = this._title;
-  this._element.querySelector('.grid-item__photo').alt = this._name;
-  this._element.querySelector('.grid-item__photo').src = this._link;
+  imageView.alt = this._name;
+  imageView.src = this._link;
     
   return this._element;
-  }
+  };
 
 };
 
-data.forEach((item) => {
-const card = new Card(item.data);
+initialCards.forEach((item) => {
+const card = new Card(item, '.item-template');
 const cardElement = card.generateCard();
- // Добавляем в DOM
+
   document.querySelector('.grid-elements').prepend(cardElement);
 });
 
-export {Card}
+export {initialCards, Card};
 
 /*
 //Это нужно переписать в класс
