@@ -4,12 +4,8 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupView = document.querySelector('.popup_type_view');
 const popups = [popupEdit, popupAdd, popupView];
-const popupViewPicture = popupView.querySelector('.card__picture');
-const popupViewText = popupView.querySelector('.card__title');
 const closeIcons = Array.from(document.querySelectorAll('.popup__close-icon'));
 const cardsContainer = document.querySelector('.grid-elements');
-const cardTemplate = document.querySelector('.item-template').content;
-const imageView = cardTemplate.querySelector('.grid-item__photo');
 const formElementEdit = popupEdit.querySelector('.form');
 const formElementAdd = popupAdd.querySelector('.form');
 const nameInput = formElementEdit.querySelector('.form__input_value_name');
@@ -21,6 +17,7 @@ const linkInput = formElementAdd.querySelector('.form__input_value_link');
 const forms = Array.from(document.querySelectorAll('.form'));
 
 import {initialCards as data, Card} from './Card.js';
+//import validatePopupInputs from './FormValidator.js';
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
 const openPopupEdit = (evt) => {
@@ -35,19 +32,6 @@ const openPopup = (item) => {
     document.addEventListener('keydown', closePopupByEsc);
 };
 
-    //Вызов окна просмотра и заполнение его контентом нажатого элемента
-    imageView.addEventListener('click', (evt) => {
-        fillPopup(evt)
-    });
-
-    const fillPopup = (evt) => {
-        const data = evt.target;
-        openPopup(popupView);
-        popupViewPicture.src = data.src;
-        popupViewText.textContent = data.alt;
-        popupViewPicture.alt = data.alt;
-    };
-
 
 //Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
@@ -56,22 +40,6 @@ const handleAddCardSubmit = (evt) => {
     const link = linkInput.value;
     const card = new Card(name, title);
     handleCloseEvent(evt);
-};
-
-
-//Переключение лайка
-const likeCard = (evt) => {
-    if (evt.target.classList.contains('grid-item__like')) {
-        evt.target.classList.toggle('grid-item__like_active');
-    }
-};
-
-//Удаление карточки
-const removeCard = (evt) => {
-    if (evt.target.classList.contains('grid-item__trash')) {
-        const buttonElement = evt.target;
-        buttonElement.closest('.grid-item').remove();
-    }
 };
 
 //Редактирование профиля
@@ -87,7 +55,7 @@ const resetForms = (evt) => {
     forms.forEach((form) => {
         evt.target = form;
         form.reset();
-        validatePopupInputs(form, validConsts)
+        validatePopupInputs(form)
     })
 };
 
@@ -133,9 +101,8 @@ addButton.addEventListener('click', (evt) => {
 formElementEdit.addEventListener('submit', editProfile);
 formElementAdd.addEventListener('submit', handleAddCardSubmit);
 
-cardsContainer.addEventListener('click', likeCard);
-cardsContainer.addEventListener('click', removeCard);
-
 popups.forEach((popup) => {
     popup.addEventListener('click', closePopupByOverlay)
 });
+
+export {openPopup, closePopup};

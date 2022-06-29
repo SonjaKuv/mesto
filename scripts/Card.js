@@ -24,103 +24,92 @@ const initialCards = [{
     }
 ];
 
+const popupView = document.querySelector('.popup_type_view');
+const popupViewPicture = popupView.querySelector('.card__picture');
+const popupViewText = popupView.querySelector('.card__title');
+const cardCloseIcon = popupView.querySelector('.popup__close-icon');
+
+import {
+    openPopup,
+    closePopup
+} from './index.js'
+
 class Card {
-constructor(data, cardSelector) {
-    this._title = data.name;
-    this._name = data.name;
-    this._link = data.link;
-    this._cardSelector = cardSelector;
-}
+    constructor(data, cardSelector) {
+        this._title = data.name;
+        this._name = data.name;
+        this._link = data.link;
+        this._cardSelector = cardSelector;
+    }
 
-_getTemplate() {
- const cardElement = document
-    .querySelector(this._cardSelector)
-    .content
-    .querySelector('.grid-item')
-    .cloneNode(true);
+    _getTemplate() {
+        const cardElement = document
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector('.grid-item')
+            .cloneNode(true);
 
-  return cardElement;
-}
+        return cardElement;
+    }
 
-/*
-_handleOpenPopup() {
-    popupImage.src = this._image;
-    popupElement.classList.add('popup_is-opened');
-  }
+    _handleOpenCard() {
+        popupViewPicture.src = this._link;
+        popupViewText.textContent = this._name;
+        popupViewPicture.alt = this._name;
+        openPopup(popupView);
+    }
 
-  _handleClosePopup() {
-    popupImage.src = '';
-    popupElement.classList.remove('popup_is-opened');
-  }
-*/
+    _handleCloseCard() {
+        popupViewPicture.src = '';
+        popupViewText.textContent = '';
+        popupViewPicture.alt = '';
+        closePopup(popupView);
+    };
 
-_setEventListeners() {
-      this._element.addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
-popupCloseButton.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
-  }
+//Переключение лайка
+_toggleLike() {
+const likeButton = this._element.querySelector('.grid-item__like');
+       likeButton.classList.toggle('grid-item__like_active');
+};
 
+//Удаление карточки
+_removeCard() {
+this._element.remove();
+    };
 
+    _setEventListeners() {
+        this._element.querySelector('.grid-item__photo').addEventListener('click', () => {
+            this._handleOpenCard();
+        });
+        cardCloseIcon.addEventListener('click', () => {
+            this._handleCloseCard()
+        });
+this._element.querySelector('.grid-item__like').addEventListener('click', () => {this._toggleLike()});
+this._element.querySelector('.grid-item__trash').addEventListener('click', () => {this._removeCard()});
 
-generateCard() {
-  this._element = this._getTemplate();
-  const imageView = this._element.querySelector('.grid-item__photo');
-  this._element.querySelector('.grid-item__title').textContent = this._title;
-  imageView.alt = this._name;
-  imageView.src = this._link;
-    
-  return this._element;
-  };
+    }
+
+    generateCard() {
+        this._element = this._getTemplate();
+        this._setEventListeners();
+        const imageView = this._element.querySelector('.grid-item__photo');
+        this._element.querySelector('.grid-item__title').textContent = this._title;
+        imageView.alt = this._name;
+        imageView.src = this._link;
+
+        return this._element;
+    };
 
 };
 
 initialCards.forEach((item) => {
-const card = new Card(item, '.item-template');
-const cardElement = card.generateCard();
+    const card = new Card(item, '.item-template');
+    const cardElement = card.generateCard();
 
-  document.querySelector('.grid-elements').prepend(cardElement);
+    document.querySelector('.grid-elements').prepend(cardElement);
 });
 
-export {initialCards, Card};
-
-/*
-//Это нужно переписать в класс
-//const cardsContainer = document.querySelector('.grid-elements');
-//const cardTemplate = document.querySelector('.item-template').content;
-const createCard = (data) => {
-  //  const cardElement = cardTemplate.querySelector('.grid-item').cloneNode(true);
-    const imageView = cardElement.querySelector('.grid-item__photo')
-
-    cardElement.querySelector('.grid-item__title').textContent = data.name;
-    imageView.alt = data.name;
-    imageView.src = data.link;
-
-    //Вызов окна просмотра и заполнение его контентом нажатого элемента
-    imageView.addEventListener('click', (evt) => {
-        fillPopup(evt)
-    });
-
-    const fillPopup = (evt) => {
-        const data = evt.target;
-        openPopup(popupView);
-        popupViewPicture.src = data.src;
-        popupViewText.textContent = data.alt;
-        popupViewPicture.alt = data.alt;
-    };
-
-    return cardElement;
+export {
+    initialCards,
+    Card
 };
-
-//Для каждого элемента массива выполняем колбэк функцию
-const renderCardsList = (data) => {
-    data.forEach((item) => renderCardItem(item))
-};
-
-//Добавление созданных карточек в контейнер
-const renderCardItem = (data) => {
-    cardsContainer.prepend(createCard(data));
-};
-*/
