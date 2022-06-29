@@ -1,3 +1,11 @@
+import {
+    initialCards as data,
+    Card
+} from './Card.js';
+import {
+    FormValidator
+} from './FormValidator.js';
+
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -5,7 +13,6 @@ const popupAdd = document.querySelector('.popup_type_add');
 const popupView = document.querySelector('.popup_type_view');
 const popups = [popupEdit, popupAdd, popupView];
 const closeIcons = Array.from(document.querySelectorAll('.popup__close-icon'));
-const cardsContainer = document.querySelector('.grid-elements');
 const formElementEdit = popupEdit.querySelector('.form');
 const formElementAdd = popupAdd.querySelector('.form');
 const nameInput = formElementEdit.querySelector('.form__input_value_name');
@@ -15,9 +22,6 @@ const profileJob = document.querySelector('.profile__description');
 const titleInput = formElementAdd.querySelector('.form__input_value_title');
 const linkInput = formElementAdd.querySelector('.form__input_value_link');
 const forms = Array.from(document.querySelectorAll('.form'));
-
-import {initialCards as data, Card} from './Card.js';
-//import validatePopupInputs from './FormValidator.js';
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
 const openPopupEdit = (evt) => {
@@ -32,13 +36,14 @@ const openPopup = (item) => {
     document.addEventListener('keydown', closePopupByEsc);
 };
 
-
 //Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
     evt.preventDefault();
-    const name = titleInput.value;
-    const link = linkInput.value;
-    const card = new Card(name, title);
+    data.name = titleInput.value;
+    data.link = linkInput.value;
+    const card = new Card(data, '.item-template');
+    const cardElement = card.generateCard();
+    document.querySelector('.grid-elements').prepend(cardElement);
     handleCloseEvent(evt);
 };
 
@@ -53,9 +58,8 @@ const editProfile = (evt) => {
 //Восстанавливаем стандартные значения формы
 const resetForms = (evt) => {
     forms.forEach((form) => {
-        evt.target = form;
         form.reset();
-        validatePopupInputs(form)
+        const valid = new FormValidator(form)
     })
 };
 
@@ -83,7 +87,6 @@ const closePopupByOverlay = (evt) => {
 const closePopupByEsc = (evt) => {
     popups.forEach((popup) => {
         if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-            evt.target = popup;
             closePopup(popup);
         }
     });
@@ -105,4 +108,7 @@ popups.forEach((popup) => {
     popup.addEventListener('click', closePopupByOverlay)
 });
 
-export {openPopup, closePopup};
+export {
+    openPopup,
+    closePopup
+};

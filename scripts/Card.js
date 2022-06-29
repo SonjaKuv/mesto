@@ -1,3 +1,8 @@
+import {
+    openPopup,
+    closePopup
+} from './index.js'
+
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -28,11 +33,6 @@ const popupView = document.querySelector('.popup_type_view');
 const popupViewPicture = popupView.querySelector('.card__picture');
 const popupViewText = popupView.querySelector('.card__title');
 const cardCloseIcon = popupView.querySelector('.popup__close-icon');
-
-import {
-    openPopup,
-    closePopup
-} from './index.js'
 
 class Card {
     constructor(data, cardSelector) {
@@ -66,33 +66,36 @@ class Card {
         closePopup(popupView);
     };
 
-//Переключение лайка
-_toggleLike() {
-const likeButton = this._element.querySelector('.grid-item__like');
-       likeButton.classList.toggle('grid-item__like_active');
-};
-
-//Удаление карточки
-_removeCard() {
-this._element.remove();
+    //Переключение лайка
+    _toggleLike() {
+        const likeButton = this._element.querySelector('.grid-item__like');
+        likeButton.classList.toggle('grid-item__like_active');
     };
 
-    _setEventListeners() {
-        this._element.querySelector('.grid-item__photo').addEventListener('click', () => {
+    //Удаление карточки
+    _removeCard() {
+        this._element.remove();
+    };
+
+    _setEventListeners(imageView) {
+        imageView.addEventListener('click', () => {
             this._handleOpenCard();
         });
         cardCloseIcon.addEventListener('click', () => {
             this._handleCloseCard()
         });
-this._element.querySelector('.grid-item__like').addEventListener('click', () => {this._toggleLike()});
-this._element.querySelector('.grid-item__trash').addEventListener('click', () => {this._removeCard()});
-
+        this._element.querySelector('.grid-item__like').addEventListener('click', () => {
+            this._toggleLike()
+        });
+        this._element.querySelector('.grid-item__trash').addEventListener('click', () => {
+            this._removeCard()
+        });
     }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._setEventListeners();
         const imageView = this._element.querySelector('.grid-item__photo');
+        this._setEventListeners(imageView);
         this._element.querySelector('.grid-item__title').textContent = this._title;
         imageView.alt = this._name;
         imageView.src = this._link;
@@ -109,7 +112,8 @@ initialCards.forEach((item) => {
     document.querySelector('.grid-elements').prepend(cardElement);
 });
 
+
 export {
     initialCards,
     Card
-};
+}
