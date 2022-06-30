@@ -3,7 +3,8 @@ import {
     Card
 } from './Card.js';
 import {
-    FormValidator
+    FormValidator,
+validConsts,
 } from './FormValidator.js';
 
 const editButton = document.querySelector('.profile__edit-button');
@@ -28,6 +29,11 @@ const openPopupEdit = (evt) => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
     openPopup(popupEdit);
+};
+
+const openPopupAdd = (evt) => {
+resetForms();
+openPopup(popupAdd);
 };
 
 //Изменяем видимость попапа 
@@ -56,17 +62,15 @@ const editProfile = (evt) => {
 };
 
 //Восстанавливаем стандартные значения формы
-const resetForms = (evt) => {
+const resetForms = () => {
     forms.forEach((form) => {
         form.reset();
-        const valid = new FormValidator(form)
     })
 };
 
 //Находим ближайший попап для закрытия
 const handleCloseEvent = (evt) => {
     const element = evt.target.closest('.popup');
-    resetForms(evt);
     closePopup(element);
 };
 
@@ -74,6 +78,8 @@ const handleCloseEvent = (evt) => {
 const closePopup = (element) => {
     element.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
+    const valid = new FormValidator(validConsts);
+    valid.validatePopupInputs();
 };
 
 //Закрытие попапа при нажатии на overlay
@@ -98,9 +104,7 @@ closeIcons.forEach((item) => {
 });
 
 editButton.addEventListener('click', openPopupEdit);
-addButton.addEventListener('click', (evt) => {
-    openPopup(popupAdd)
-});
+addButton.addEventListener('click', openPopupAdd);
 formElementEdit.addEventListener('submit', editProfile);
 formElementAdd.addEventListener('submit', handleAddCardSubmit);
 

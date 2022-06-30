@@ -44,7 +44,7 @@ class FormValidator {
         if (!inputElement.validity.valid) {
             this._showInputError(formElement, inputElement, inputElement.validationMessage);
         } else {
-            this._hideInputError(formElement, inputElement);
+            this._hideInputError(inputElement);
         }
     };
 
@@ -56,8 +56,8 @@ class FormValidator {
     };
 
 
-    _hideInputError = (formElement, inputElement) => {
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    _hideInputError = (inputElement) => {
+        const errorElement = document.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.remove(this._config.inputError);
         errorElement.classList.remove(this._config.errorClass);
         errorElement.textContent = '';
@@ -71,12 +71,12 @@ class FormValidator {
     };
 
     //Проверяем валидацию инпутов, перед началом работы с формой
-    validatePopupInputs(formElement) {
+   validatePopupInputs() {
         const inputList = Array.from(document.querySelectorAll(this._config.inputElement));
         const buttonElement = document.querySelector(this._config.buttonElementSelector);
         inputList.forEach((inputElement) => {
             if (inputElement.classList.contains(this._config.inputError)) {
-                this._hideInputError(formElement, inputElement)
+                this._hideInputError(inputElement)
             }
         })
         this._toggleButtonState(inputList, buttonElement);
@@ -96,8 +96,8 @@ class FormValidator {
 
 formList.forEach((formElement) => {
     formElement = new FormValidator(validConsts);
-    formElement.enableValidation();
+    formElement.enableValidation(); 
     formElement.validatePopupInputs();
 });
 
-export {FormValidator};
+export {FormValidator, validConsts};
