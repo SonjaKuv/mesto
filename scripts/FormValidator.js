@@ -11,8 +11,9 @@ const validConsts = {
 const formList = Array.from(document.querySelectorAll(validConsts.formElement));
 
 class FormValidator {
-    constructor(validConsts) {
+    constructor(validConsts, formElement) {
         this._config = validConsts;
+        this._form = formElement;
     }
 
     //Активация-дизактивация кнопки submit
@@ -73,7 +74,6 @@ class FormValidator {
     //Проверяем валидацию инпутов, перед началом работы с формой
     validatePopupInputs() {
         const inputList = Array.from(document.querySelectorAll(this._config.inputElement));
-        const buttonElement = document.querySelector(this._config.buttonElementSelector);
         inputList.forEach((inputElement) => {
             if (inputElement.classList.contains(this._config.inputError)) {
                 this._hideInputError(inputElement)
@@ -94,7 +94,7 @@ class FormValidator {
 };
 
 formList.forEach((formElement) => {
-    formElement = new FormValidator(validConsts);
+    formElement = new FormValidator(validConsts, '.form');
     formElement.enableValidation();
     formElement.validatePopupInputs();
 });

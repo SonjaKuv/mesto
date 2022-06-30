@@ -11,8 +11,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
-const popupView = document.querySelector('.popup_type_view');
-const popups = [popupEdit, popupAdd, popupView];
+const popups = Array.from(document.querySelectorAll('.popup'));
 const closeIcons = Array.from(document.querySelectorAll('.popup__close-icon'));
 const formElementEdit = popupEdit.querySelector('.form');
 const formElementAdd = popupAdd.querySelector('.form');
@@ -24,18 +23,11 @@ const titleInput = formElementAdd.querySelector('.form__input_value_title');
 const linkInput = formElementAdd.querySelector('.form__input_value_link');
 const forms = Array.from(document.querySelectorAll('.form'));
 
-//Открытие окна редактирования профиля, значения инпутов берутся со страницы
-const openPopupEdit = () => {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-    openPopup(popupEdit);
-};
-
-//Открытие окна добавления новой карточки с обязательным ресетом формы 
-const openPopupAdd = () => {
-    resetForms();
-    openPopup(popupAdd);
-};
+const validatePopup = () => {
+    const valid = new FormValidator(validConsts, '.form');
+    valid.enableValidation();
+    valid.validatePopupInputs();
+}
 
 //Открытие попапа
 const openPopup = (item) => {
@@ -44,11 +36,37 @@ const openPopup = (item) => {
     validatePopup();
 };
 
-const validatePopup = () => {
-    const valid = new FormValidator(validConsts);
-    valid.enableValidation();
-    valid.validatePopupInputs();
-}
+//Открытие окна редактирования профиля, значения инпутов берутся со страницы
+const openPopupEdit = () => {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+    openPopup(popupEdit);
+};
+
+//Восстанавливаем стандартные значения формы
+const resetForms = () => {
+    forms.forEach((form) => {
+        form.reset();
+    })
+};
+
+//Открытие окна добавления новой карточки с обязательным ресетом формы 
+const openPopupAdd = () => {
+    resetForms();
+    openPopup(popupAdd);
+};
+
+//Закрытие любого попапа
+const closePopup = (element) => {
+    element.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc);
+};
+
+//Находим ближайший попап для закрытия
+const handleCloseEvent = (evt) => {
+    const element = evt.target.closest('.popup');
+    closePopup(element);
+};
 
 //Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
@@ -67,25 +85,6 @@ const editProfile = (evt) => {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     handleCloseEvent(evt);
-};
-
-//Восстанавливаем стандартные значения формы
-const resetForms = () => {
-    forms.forEach((form) => {
-        form.reset();
-    })
-};
-
-//Находим ближайший попап для закрытия
-const handleCloseEvent = (evt) => {
-    const element = evt.target.closest('.popup');
-    closePopup(element);
-};
-
-//Закрытие любого попапа
-const closePopup = (element) => {
-    element.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupByEsc);
 };
 
 //Закрытие попапа при нажатии на overlay
