@@ -71,7 +71,7 @@ class FormValidator {
     };
 
     //Проверяем валидацию инпутов, перед началом работы с формой
-   validatePopupInputs() {
+    validatePopupInputs() {
         const inputList = Array.from(document.querySelectorAll(this._config.inputElement));
         const buttonElement = document.querySelector(this._config.buttonElementSelector);
         inputList.forEach((inputElement) => {
@@ -79,7 +79,6 @@ class FormValidator {
                 this._hideInputError(inputElement)
             }
         })
-        this._toggleButtonState(inputList, buttonElement);
     };
 
     //Добавляем слушатели для всех форм (включаем ввалидацию)
@@ -96,8 +95,11 @@ class FormValidator {
 
 formList.forEach((formElement) => {
     formElement = new FormValidator(validConsts);
-    formElement.enableValidation(); 
+    formElement.enableValidation();
     formElement.validatePopupInputs();
 });
 
-export {FormValidator, validConsts};
+export {
+    FormValidator,
+    validConsts
+};

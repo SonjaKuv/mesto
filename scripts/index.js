@@ -4,7 +4,7 @@ import {
 } from './Card.js';
 import {
     FormValidator,
-validConsts,
+    validConsts,
 } from './FormValidator.js';
 
 const editButton = document.querySelector('.profile__edit-button');
@@ -25,22 +25,30 @@ const linkInput = formElementAdd.querySelector('.form__input_value_link');
 const forms = Array.from(document.querySelectorAll('.form'));
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
-const openPopupEdit = (evt) => {
+const openPopupEdit = () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
     openPopup(popupEdit);
 };
 
-const openPopupAdd = (evt) => {
-resetForms();
-openPopup(popupAdd);
+//Открытие окна добавления новой карточки с обязательным ресетом формы 
+const openPopupAdd = () => {
+    resetForms();
+    openPopup(popupAdd);
 };
 
-//Изменяем видимость попапа 
+//Открытие попапа
 const openPopup = (item) => {
     item.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEsc);
+    validatePopup();
 };
+
+const validatePopup = () => {
+    const valid = new FormValidator(validConsts);
+    valid.enableValidation();
+    valid.validatePopupInputs();
+}
 
 //Обрабатываем событие сабмита создания новой карточки
 const handleAddCardSubmit = (evt) => {
@@ -78,8 +86,6 @@ const handleCloseEvent = (evt) => {
 const closePopup = (element) => {
     element.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
-    const valid = new FormValidator(validConsts);
-    valid.validatePopupInputs();
 };
 
 //Закрытие попапа при нажатии на overlay
@@ -102,15 +108,15 @@ const closePopupByEsc = (evt) => {
 closeIcons.forEach((item) => {
     item.addEventListener('click', handleCloseEvent)
 });
+//Закрытие попапа при нажатии на overlay
+popups.forEach((popup) => {
+    popup.addEventListener('click', closePopupByOverlay)
+});
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
 formElementEdit.addEventListener('submit', editProfile);
 formElementAdd.addEventListener('submit', handleAddCardSubmit);
-
-popups.forEach((popup) => {
-    popup.addEventListener('click', closePopupByOverlay)
-});
 
 export {
     openPopup,
