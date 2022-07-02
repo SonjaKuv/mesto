@@ -1,10 +1,10 @@
 import {
-    initialCards as data,
+    data,
     Card
 } from './Card.js';
 import {
     FormValidator,
-    validConsts,
+    validConsts as config,
 } from './FormValidator.js';
 
 const editButton = document.querySelector('.profile__edit-button');
@@ -21,38 +21,49 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
 const titleInput = formElementAdd.querySelector('.form__input_value_title');
 const linkInput = formElementAdd.querySelector('.form__input_value_link');
-const forms = Array.from(document.querySelectorAll('.form'));
+const popupView = document.querySelector('.popup_type_view');
+const popupViewPicture = popupView.querySelector('.card__picture');
+const popupViewText = popupView.querySelector('.card__title');
+const gridElements = document.querySelector('.grid-elements');
+const editFormValidator = new FormValidator(config, formElementEdit);
+const addFormValidator = new FormValidator(config, formElementAdd);
 
-const validatePopup = () => {
-    const valid = new FormValidator(validConsts, '.form');
-    valid.enableValidation();
-    valid.validatePopupInputs();
-}
+const handleCardClick = (name, link)  => { 
+        popupViewPicture.src = link;
+        popupViewText.textContent = name; 
+        popupViewPicture.alt = name; 
+        openPopup(popupView); 
+    }
+
+const createCard = (item) => {
+    const card = new Card(item, '.item-template', handleCardClick);
+    const cardElement = card.generateCard();
+    return cardElement;
+};
+
+//Для каждого элемента массива выполняем колбэк функцию 
+data.forEach((item) => { 
+    const cardElement = createCard(item);
+    gridElements.prepend(cardElement)});
 
 //Открытие попапа
 const openPopup = (item) => {
     item.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEsc);
-    validatePopup();
 };
 
 //Открытие окна редактирования профиля, значения инпутов берутся со страницы
 const openPopupEdit = () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+    editFormValidator.resetValidation();
     openPopup(popupEdit);
-};
-
-//Восстанавливаем стандартные значения формы
-const resetForms = () => {
-    forms.forEach((form) => {
-        form.reset();
-    })
 };
 
 //Открытие окна добавления новой карточки с обязательным ресетом формы 
 const openPopupAdd = () => {
-    resetForms();
+    formElementAdd.reset();
+    addFormValidator.resetValidation();
     openPopup(popupAdd);
 };
 
@@ -73,9 +84,7 @@ const handleAddCardSubmit = (evt) => {
     evt.preventDefault();
     data.name = titleInput.value;
     data.link = linkInput.value;
-    const card = new Card(data, '.item-template');
-    const cardElement = card.generateCard();
-    document.querySelector('.grid-elements').prepend(cardElement);
+    createCard(data);
     handleCloseEvent(evt);
 };
 
@@ -117,7 +126,5 @@ addButton.addEventListener('click', openPopupAdd);
 formElementEdit.addEventListener('submit', editProfile);
 formElementAdd.addEventListener('submit', handleAddCardSubmit);
 
-export {
-    openPopup,
-    closePopup
-};
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
