@@ -81,7 +81,7 @@ const handleAddCardSubmit = (evt) => {
     handleCloseEvent(evt);
 };
 
-const editProfile = (evt) => {
+const handleEditProfileSubmit = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
@@ -109,7 +109,7 @@ popups.forEach((popup) => {
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
-formElementEdit.addEventListener('submit', editProfile);
+formElementEdit.addEventListener('submit', handleEditProfileSubmit);
 formElementAdd.addEventListener('submit', handleAddCardSubmit);
 
 editFormValidator.enableValidation();
