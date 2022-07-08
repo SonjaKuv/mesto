@@ -1,17 +1,23 @@
 import {
-    data,
-    Card
-} from './Card.js';
+initialCards,
+cardListSelector
+} from '../utils/constants.js'
+
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import popupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+
 import {
     FormValidator,
     validConsts as config,
-} from './FormValidator.js';
+} from '../components/FormValidator.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
-const popups = Array.from(document.querySelectorAll('.popup'));
 const formElementEdit = popupEdit.querySelector('.form');
 const formElementAdd = popupAdd.querySelector('.form');
 const nameInput = formElementEdit.querySelector('.form__input_value_name');
@@ -26,76 +32,33 @@ const popupViewText = popupView.querySelector('.card__title');
 const gridElements = document.querySelector('.grid-elements');
 const editFormValidator = new FormValidator(config, formElementEdit);
 const addFormValidator = new FormValidator(config, formElementAdd);
+const addEditPopup = new PopupWithForm(popupEdit);
+const addNewCardPopup = new PopupWithForm(popupAdd);
 
-const handleCardClick = (name, link) => {
-    popupViewPicture.src = link;
-    popupViewText.textContent = name;
-    popupViewPicture.alt = name;
-    openPopup(popupView);
-}
-
-const createCard = (name, link) => {
-    const card = new Card(name, link, '.item-template', handleCardClick);
+const initialCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, '.item-template', handleCardClick);
     const cardElement = card.generateCard();
-    return cardElement;
-};
-
-data.forEach((item) => {
-    const cardElement = createCard(item.name, item.link);
-    gridElements.prepend(cardElement)
-});
-
-const openPopup = (item) => {
-    item.classList.add('popup_opened');
-    document.addEventListener('keydown', closePopupByEsc);
-};
+    initialCardList.setItem(cardElement);
+  }
+}, cardListSelector);
 
 const openPopupEdit = () => {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
+   const profileName = nameInput.value;
+    const profileJob = jobInput.value;
+const info = new UserInfo({profileName, profileJob});
     editFormValidator.resetValidation();
-    openPopup(popupEdit);
+addEditPopup.open();
 };
 
 const openPopupAdd = () => {
     formElementAdd.reset();
     addFormValidator.resetValidation();
-    openPopup(popupAdd);
+addNewCardPopup.open();
 };
 
-const closePopup = (element) => {
-    element.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupByEsc);
-};
-
-const handleCloseEvent = (evt) => {
-    const element = evt.target.closest('.popup');
-    closePopup(element);
-};
-
-const handleAddCardSubmit = (evt) => {
-    evt.preventDefault();
-    const name = titleInput.value;
-    const link = linkInput.value;
-    gridElements.prepend(createCard(name, link));
-    handleCloseEvent(evt);
-};
-
-const handleEditProfileSubmit = (evt) => {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-    handleCloseEvent(evt);
-};
-
-const closePopupByEsc = (evt) => {
-    popups.forEach((popup) => {
-        if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-            closePopup(popup);
-        }
-    });
-};
-
+/*
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
@@ -106,6 +69,35 @@ popups.forEach((popup) => {
         }
     })
 })
+*/
+
+const handleCardClick = (name, link) => {
+    popupViewPicture.src = link;
+    popupViewText.textContent = name;
+    popupViewPicture.alt = name;
+    const addImagePopup = new popupWithImage(name, link);
+}
+
+const createCard = (name, link) => {
+    const card = new Card(name, link, '.item-template', handleCardClick);
+    const cardElement = card.generateCard();
+    return cardElement;
+};
+
+const handleAddCardSubmit = (evt) => {
+    evt.preventDefault();
+    const name = titleInput.value;
+    const link = linkInput.value;
+    gridElements.prepend(createCard(name, link));
+};
+
+const handleEditProfileSubmit = (evt) => {
+    evt.preventDefault();
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+};
+
+initialCardList.renderItems();
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);

@@ -1,30 +1,4 @@
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-class Card {
+export default class Card {
     constructor(name, link, cardSelector, handleCardClick) {
         this._title = name;
         this._name = name;
@@ -70,17 +44,8 @@ class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._cardTitle = this._element.querySelector('.grid-item__title')
-        this._cardTitle.textContent = this._title;
-        this._cardImage.alt = this._name;
-        this._cardImage.src = this._link;
 
         return this._element;
     };
 
 };
-
-export {
-    initialCards as data,
-    Card
-}
