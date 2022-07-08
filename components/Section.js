@@ -6,7 +6,7 @@ constructior({items, renderer}, containerSelector) {
 }
 
 //отвечает за отрисовку всех элементов
-  renderItems() {
+renderItems() {
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });

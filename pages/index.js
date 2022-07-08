@@ -30,6 +30,7 @@ const popupView = document.querySelector('.popup_type_view');
 const popupViewPicture = popupView.querySelector('.card__picture');
 const popupViewText = popupView.querySelector('.card__title');
 const gridElements = document.querySelector('.grid-elements');
+
 const editFormValidator = new FormValidator(config, formElementEdit);
 const addFormValidator = new FormValidator(config, formElementAdd);
 const addEditPopup = new PopupWithForm(popupEdit);
@@ -40,7 +41,7 @@ const initialCardList = new Section({
   renderer: (item) => {
     const card = new Card(item.name, item.link, '.item-template', handleCardClick);
     const cardElement = card.generateCard();
-    initialCardList.setItem(cardElement);
+    initialCardList.addItem(cardElement);
   }
 }, cardListSelector);
 
@@ -97,7 +98,6 @@ const handleEditProfileSubmit = (evt) => {
     profileJob.textContent = jobInput.value;
 };
 
-initialCardList.renderItems();
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
@@ -106,3 +106,6 @@ formElementAdd.addEventListener('submit', handleAddCardSubmit);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+
+
+initialCardList.renderItems();
