@@ -15,7 +15,7 @@ _handleEscClose(evt) {
 
 setEventListeners() {
 this._closeIcon.addEventListener('mousedown', () => {
- this.close(this._popup)
+ this.close()
 })
 };
 

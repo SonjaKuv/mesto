@@ -1,7 +1,6 @@
 export default class Card {
     constructor(name, link, cardSelector, handleCardClick) {
         this._title = name;
-        this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
@@ -44,6 +43,10 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
+        this._cardTitle = this._element.querySelector('.grid-item__title')
+        this._cardTitle.textContent = this._title;
+        this._cardImage.alt = this._title;
+        this._cardImage.src = this._link;
 
         return this._element;
     };

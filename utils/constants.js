@@ -25,3 +25,5 @@ export const initialCards = [{
 ];
 
 export const cardListSelector = '.grid-elements';
+
+export const popupView = document.querySelector('.popup_type_view');
