@@ -14,7 +14,7 @@ _getInputValues() {
 
 setEventListeners() {
 this._submitButton.addEventListener('submit', () => {
-this._handleFormSubmit()
+this._handleFormSubmit(evt)
 })
 }
 
@@ -22,5 +22,4 @@ this._handleFormSubmit()
 close() {
 
 }
-
 }
