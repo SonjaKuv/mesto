@@ -1,6 +1,6 @@
 export default class Card {
-    constructor(name, link, cardSelector, handleCardClick) {
-        this._name = name;
+    constructor(title, link, cardSelector, handleCardClick) {
+        this._title = title;
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
@@ -30,7 +30,7 @@ export default class Card {
         this._trashIcon = this._element.querySelector('.grid-item__trash');
 
         this._cardImage.addEventListener('click', () => {
-            this._handleCardClick(this._name, this._link);
+            this._handleCardClick(this._title, this._link);
         });
         this._likeBtn.addEventListener('click', () => {
             this._toggleLike()

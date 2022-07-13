@@ -36,7 +36,6 @@ const submitEditProfileButton = popupEdit.querySelector('.form__submit-button');
 const editFormValidator = new FormValidator(config, formElementEdit);
 const addFormValidator = new FormValidator(config, formElementAdd);
 
-const info = new UserInfo({profileName, profileJob});
 //done
 const initialCardList = new Section({
     items: initialCards,
@@ -46,8 +45,8 @@ const initialCardList = new Section({
     }
 }, cardListSelector);
 //done
-const createCard = (name, link) => {
-    const card = new Card(name, link, '.item-template', handleCardClick);
+const createCard = (title, link) => {
+    const card = new Card(title, link, '.item-template', handleCardClick);
     const cardElement = card.generateCard();
     return cardElement;
 };
@@ -61,7 +60,6 @@ const handleCardClick = (name, link) => {
 //validation?
 const openPopupEdit = () => {
     info.getUserInfo();
-console.log(info)
     editFormValidator.resetValidation();
     const addPopup = new Popup(popupEdit);
     addPopup.open();
@@ -86,14 +84,19 @@ popups.forEach((popup) => {
     })
 })
 
+
 const submitAddCardForm = new PopupWithForm({
 popupSelector: popupAdd,
 handleFormSubmit: (item) => {
-const card = createCard(item);
-
+item = { title: titleInput.value,
+link: linkInput.value };
+const card = createCard(item.title, item.link);
+console.log(card)
 gridElements.prepend.card;
 }
 });
+
+const info = new UserInfo({profileName, profileJob});
 //done
 const submitEditProfileForm = new PopupWithForm({
 popupSelector: popupEdit,
