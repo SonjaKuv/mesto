@@ -57,16 +57,15 @@ const handleCardClick = (name, link) => {
     imagePopup.open()
 }
 
-//validation?
+// не считывает со страницы
 const openPopupEdit = () => {
     info.getUserInfo();
     editFormValidator.resetValidation();
     const addPopup = new Popup(popupEdit);
     addPopup.open();
 };
-//validation?
+
 const openPopupAdd = () => {
-    formElementAdd.reset();
     addFormValidator.resetValidation();
     const addPopup = new Popup(popupAdd);
     addPopup.open();
@@ -84,15 +83,14 @@ popups.forEach((popup) => {
     })
 })
 
-
+//done
 const submitAddCardForm = new PopupWithForm({
 popupSelector: popupAdd,
 handleFormSubmit: (item) => {
 item = { title: titleInput.value,
 link: linkInput.value };
 const card = createCard(item.title, item.link);
-console.log(card)
-gridElements.prepend.card;
+gridElements.prepend(card);
 }
 });
 
@@ -109,6 +107,7 @@ info.setUserInfo(item.user, item.job);
 
 submitAddCardButton.addEventListener('click', (evt) => {
 submitAddCardForm.setEventListeners(evt);
+//submitAddCardForm.close(); --куда это?
 });
 submitEditProfileButton.addEventListener('click', (evt) => {
 submitEditProfileForm.setEventListeners(evt);

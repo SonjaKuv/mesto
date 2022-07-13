@@ -4,7 +4,6 @@ export default class Popup {
         this._popupList = Array.from(document.querySelectorAll('.popup'));
     };
 
-//не работает для форм
     _handleEscClose(evt) {
 this._popupList.forEach((popup) => {
             if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {

@@ -27,6 +27,8 @@ this.close()
 //нужен еще ресет формы
 close() {
 super.close();
-
+this._form = this._popup.querySelector('.form')
+this._form.reset();
+console.log('a')
 }
 }
