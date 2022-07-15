@@ -8,27 +8,29 @@ this._inputList = this._popup.querySelectorAll('.popup');
 }
 
 _getInputValues() {
-this._inputValues = {};
+this._formValues = {};
 this._inputList.forEach((input) => {
-this._inputValues[input] = input.value;
+this._formValues[input] = input.value;
 });
-return this._inputValues
+return this._formValues
 }
 
 setEventListeners() {
 super.setEventListeners();
-this._popup.addEventListener('submit', (evt) => {
+this._popup.addEventListener('submit', this._submitHandler)
+}
+
+_submitHandler = (evt) => {
 evt.preventDefault();
 this._handleFormSubmit(this._getInputValues());
 this.close()
-})
 }
 
-//нужен еще ресет формы
 close() {
 super.close();
-this._form = this._popup.querySelector('.form')
+this._form = this._popup.querySelector('.form');
 this._form.reset();
-console.log('a')
+console.log('reset')
 }
 }
+
