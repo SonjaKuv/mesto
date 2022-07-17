@@ -4,12 +4,11 @@ export default class Popup {
         this._popupList = Array.from(document.querySelectorAll('.popup'));
     };
 
-  
-  _handleEscClose = (evt) => {
-            if (evt.key === 'Escape' && this._popup.classList.contains('popup_opened')) {
-                this.close();
-                console.log('esc')
-            }
+
+    _handleEscClose = (evt) => {
+        if (evt.key === 'Escape' && this._popup.classList.contains('popup_opened')) {
+            this.close();
+        }
     };
 
     _closeByOverlay = (evt) => {
@@ -20,7 +19,6 @@ export default class Popup {
     }
 
     setEventListeners() {
-        console.log('add')
         this._popup.addEventListener('mousedown', this._closeByOverlay)
     }
 

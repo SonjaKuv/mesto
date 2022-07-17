@@ -13,8 +13,9 @@
 - Grid Layout;
 - Медиазапросы;
 - Оптимизация шрифтов;
-- Форма;
-- функциональная часть и валидация форм написаны на Java Script;
+- Формы;
+- Функциональная часть и валидация форм написаны на Java Script (ES6-классы);
+- Сборка Webpack'ом;
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=SonjaKuv&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
