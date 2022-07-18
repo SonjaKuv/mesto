@@ -1,42 +1,51 @@
 export const initialCards = [{
-        name: 'Архыз',
+        title: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
-        name: 'Челябинская область',
+        title: 'Челябинская область',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
-        name: 'Иваново',
+        title: 'Иваново',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
-        name: 'Камчатка',
+        title: 'Камчатка',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
-        name: 'Холмогорский район',
+        title: 'Холмогорский район',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
-        name: 'Байкал',
+        title: 'Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
 
+export const validConsts = {
+
+    formElement: '.form',
+    inputElement: '.form__input',
+    submitButtonSelector: '.form__submit-button',
+    inactiveButton: 'form__submit-button_invalid',
+    inputError: 'form__input_type_error',
+    errorClass: 'form__error-message',
+};
+
 export const cardListSelector = '.grid-elements';
 
-export const popupView = document.querySelector('.popup_type_view');
-export const editButton = document.querySelector('.profile__edit-button');
-export const addButton = document.querySelector('.profile__add-button');
-export const popupEdit = document.querySelector('.popup_type_edit');
-export const popupAdd = document.querySelector('.popup_type_add');
-export const formElementEdit = popupEdit.querySelector('.form');
-export const formElementAdd = popupAdd.querySelector('.form');
-export const nameInput = formElementEdit.querySelector('.form__input_value_name');
-export const jobInput = formElementEdit.querySelector('.form__input_value_job');
+export const buttonEditProfile = document.querySelector('.profile__edit-button');
+export const buttonAddCard = document.querySelector('.profile__add-button');
+export const popupEditProfile = document.querySelector('.popup_type_edit');
+export const popupAddCard = document.querySelector('.popup_type_add');
+export const formEditProfile = popupEditProfile.querySelector('.form');
+export const formAddCard = popupAddCard.querySelector('.form');
+export const inputName = formEditProfile.querySelector('.form__input_value_name');
+export const inputJob = formEditProfile.querySelector('.form__input_value_job');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__description');
-export const titleInput = formElementAdd.querySelector('.form__input_value_title');
-export const linkInput = formElementAdd.querySelector('.form__input_value_link');
-export const gridElements = document.querySelector('.grid-elements');
+export const inputTitle = formAddCard.querySelector('.form__input_value_title');
+export const inputLink = formAddCard.querySelector('.form__input_value_link');
+export const cardsContainer = document.querySelector('.grid-elements');

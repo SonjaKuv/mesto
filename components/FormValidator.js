@@ -1,12 +1,4 @@
-const validConsts = {
-
-    formElement: '.form',
-    inputElement: '.form__input',
-    submitButtonSelector: '.form__submit-button',
-    inactiveButton: 'form__submit-button_invalid',
-    inputError: 'form__input_type_error',
-    errorClass: 'form__error-message',
-};
+import {validConsts} from '../utils/constants.js';
 
 class FormValidator {
     constructor(validConsts, formElement) {

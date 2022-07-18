@@ -3,20 +3,17 @@ import './index.css';
 import {
     initialCards,
     cardListSelector,
-    popupView,
-    editButton,
-    addButton,
-    popupEdit,
-    popupAdd,
-    formElementEdit,
-    formElementAdd,
-    nameInput,
-    jobInput,
+    buttonEditProfile,
+    buttonAddCard,
+    formEditProfile,
+    formAddCard,
+    inputName,
+    inputJob,
     profileName,
     profileJob,
-    titleInput,
-    linkInput,
-    gridElements,
+    inputTitle,
+    inputLink,
+    cardsContainer,
 } from '../utils/constants.js'
 
 import Card from '../components/Card.js';
@@ -24,81 +21,82 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import Popup from '../components/Popup.js';
 import {
     FormValidator,
     validConsts as config,
 } from '../components/FormValidator.js';
 
-const editFormValidator = new FormValidator(config, formElementEdit);
-const addFormValidator = new FormValidator(config, formElementAdd);
+const validatorEditProfileForm = new FormValidator(config, formEditProfile);
+const validatorAddCardForm = new FormValidator(config, formAddCard);
 
-const initialCardList = new Section({
+const cardList = new Section({
     items: initialCards,
     renderer: (item) => {
-        const cardElement = createCard(item.name, item.link);
-        initialCardList.addItem(cardElement);
+        const cardElement = createCard(item);
+        cardList.addItem(cardElement);
     }
 }, cardListSelector);
 
-const createCard = (title, link) => {
-    const card = new Card(title, link, '.item-template', handleCardClick);
+const createCard = (cardData) => {
+    const card = new Card(cardData, '.item-template', handleCardClick);
     const cardElement = card.generateCard();
     return cardElement;
 };
 
+const popupOpenImage = new PopupWithImage('.popup_type_view');
 const handleCardClick = (name, link) => {
-    const imagePopup = new PopupWithImage(popupView, name, link);
-    imagePopup.open()
-    imagePopup.setEventListeners()
+    popupOpenImage.open(name, link)
+    popupOpenImage.setEventListeners()
 }
 
 const openPopupEdit = () => {
-    info.getUserInfo(nameInput, jobInput);
-    editFormValidator.resetValidation();
-    editPopup.open()
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
+    userInfo.getUserInfo();
+    validatorEditProfileForm.resetValidation();
+    popupNewProfileInfo.open()
 };
 
 const openPopupAdd = () => {
-    addFormValidator.resetValidation();
-    addPopup.open();
+    validatorAddCardForm.resetValidation();
+    popupNewCard.open();
 };
 
-const addPopup = new PopupWithForm({
-    popupSelector: popupAdd,
+const popupNewCard = new PopupWithForm({
+    popupSelector: '.popup_type_add',
     handleFormSubmit: (item) => {
         item = {
-            title: titleInput.value,
-            link: linkInput.value
+            title: inputTitle.value,
+            link: inputLink.value
         };
-        gridElements.prepend(createCard(item.title, item.link));
+        cardsContainer.prepend(createCard(item));
     }
 });
 
-addPopup.setEventListeners();
+popupNewCard.setEventListeners();
 
-const editPopup = new PopupWithForm({
-    popupSelector: popupEdit,
+const popupNewProfileInfo = new PopupWithForm({
+    popupSelector: '.popup_type_edit',
     handleFormSubmit: (item) => {
         item = {
-            user: nameInput.value,
-            job: jobInput.value
+            user: inputName.value,
+            job: inputJob.value
         }
-        info.setUserInfo(item.user, item.job);
+        userInfo.setUserInfo(item.user, item.job);
     }
 });
 
-editPopup.setEventListeners();
+popupNewProfileInfo.setEventListeners();
 
-const info = new UserInfo({
-    profileName,
-    profileJob
+const userInfo = new UserInfo({
+    profileName: '.profile__name',
+    profileJob: '.profile__description'
 });
 
-editButton.addEventListener('click', openPopupEdit);
-addButton.addEventListener('click', openPopupAdd);
+buttonEditProfile.addEventListener('click', openPopupEdit);
+buttonAddCard.addEventListener('click', openPopupAdd);
 
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+validatorEditProfileForm.enableValidation();
+validatorAddCardForm.enableValidation();
 
-initialCardList.renderItems();
+cardList.renderItems();
