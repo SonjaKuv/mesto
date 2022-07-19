@@ -24,7 +24,7 @@ export const initialCards = [{
     }
 ];
 
-export const validConsts = {
+export const validationConfig = {
 
     formElement: '.form',
     inputElement: '.form__input',
@@ -48,4 +48,3 @@ export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__description');
 export const inputTitle = formAddCard.querySelector('.form__input_value_title');
 export const inputLink = formAddCard.querySelector('.form__input_value_link');
-export const cardsContainer = document.querySelector('.grid-elements');

@@ -13,7 +13,7 @@ import {
     profileJob,
     inputTitle,
     inputLink,
-    cardsContainer,
+    validationConfig
 } from '../utils/constants.js'
 
 import Card from '../components/Card.js';
@@ -21,16 +21,12 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import {
-    FormValidator,
-    validConsts as config,
-} from '../components/FormValidator.js';
+import FormValidator from '../components/FormValidator.js';
 
-const validatorEditProfileForm = new FormValidator(config, formEditProfile);
-const validatorAddCardForm = new FormValidator(config, formAddCard);
+const validatorEditProfileForm = new FormValidator(validationConfig, formEditProfile);
+const validatorAddCardForm = new FormValidator(validationConfig, formAddCard);
 
 const cardList = new Section({
-    items: initialCards,
     renderer: (item) => {
         const cardElement = createCard(item);
         cardList.addItem(cardElement);
@@ -46,13 +42,13 @@ const createCard = (cardData) => {
 const popupOpenImage = new PopupWithImage('.popup_type_view');
 const handleCardClick = (name, link) => {
     popupOpenImage.open(name, link)
-    popupOpenImage.setEventListeners()
-}
+};
+
+popupOpenImage.setEventListeners();
 
 const openPopupEdit = () => {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
-    userInfo.getUserInfo();
     validatorEditProfileForm.resetValidation();
     popupNewProfileInfo.open()
 };
@@ -69,7 +65,7 @@ const popupNewCard = new PopupWithForm({
             title: inputTitle.value,
             link: inputLink.value
         };
-        cardsContainer.prepend(createCard(item));
+        cardList.addItem(createCard(item));
     }
 });
 
@@ -99,4 +95,4 @@ buttonAddCard.addEventListener('click', openPopupAdd);
 validatorEditProfileForm.enableValidation();
 validatorAddCardForm.enableValidation();
 
-cardList.renderItems();
+cardList.renderItems(initialCards);

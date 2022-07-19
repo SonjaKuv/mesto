@@ -1,6 +1,4 @@
-import {validConsts} from '../utils/constants.js';
-
-class FormValidator {
+export default class FormValidator {
     constructor(validConsts, formElement) {
         this._config = validConsts;
         this._form = formElement;
@@ -72,8 +70,3 @@ class FormValidator {
         this._setEventListeners();
     };
 }
-
-export {
-    FormValidator,
-    validConsts,
-};
