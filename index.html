@@ -14,7 +14,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" alt="Аватар" src="<%= require("./images/avatar.jpg")%>" />
+                <a class="profile__avatar" href="#"></a>  
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <p class="profile__description">Исследователь океана</p>
@@ -71,6 +71,31 @@
             <button type="button" class="popup__close-icon button" aria-label="Закрыть окно"></button>
             <img class="card__picture" alt="Изображение" src="." />
             <p class="card__title"></p>
+        </div>
+        <div class="popup popup_type_delete popup-container">
+            <button type="button" class="popup__close-icon button" aria-label="Закрыть форму"></button>
+            <form class="form" name="delete_card" novalidate>
+                <h2 class="form__title">Вы уверены?</h2>
+                <button disabled type="submit" class="form__submit-button button form__submit-button_invalid"
+                    value="Да" aria-label="Подтвердить удаление">
+                    Да
+                </button>
+            </form>
+        </div>
+        <div class="popup popup_type_edit-avatar popup-container">
+            <button type="button" class="popup__close-icon button" aria-label="Закрыть форму"></button>
+            <form class="form" name="new_avatar" novalidate>
+                <h2 class="form__title">Обновить аватар</h2>
+                <fieldset class="form__input-container">
+                    <input id="avatar-input" type="url" name="avatar" class="form__input form__input_value_avatar"
+                        placeholder="Ссылка на аватар" value="" required />
+                    <span class="form__error-container form__error-message avatar-input-error"></span>
+                </fieldset>
+                <button disabled type="submit" class="form__submit-button button form__submit-button_invalid"
+                    value="Сохранить" aria-label="Сохранить аватар">
+                    Сохранить
+                </button>
+            </form>
         </div>
     </div>
     <template class="item-template">

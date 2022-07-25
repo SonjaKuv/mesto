@@ -5,15 +5,18 @@ import {
     cardListSelector,
     buttonEditProfile,
     buttonAddCard,
+    buttonEditAvatar,
     formEditProfile,
     formAddCard,
+    formEditAvatar,
     inputName,
     inputJob,
-    profileName,
-    profileJob,
+    inputAvatar,
     inputTitle,
     inputLink,
-    validationConfig
+    profileName,
+    profileJob,
+    validationConfig,
 } from '../utils/constants.js'
 
 import Card from '../components/Card.js';
@@ -25,6 +28,7 @@ import FormValidator from '../components/FormValidator.js';
 
 const validatorEditProfileForm = new FormValidator(validationConfig, formEditProfile);
 const validatorAddCardForm = new FormValidator(validationConfig, formAddCard);
+const validatorEditAvatarForm = new FormValidator(validationConfig, formEditAvatar)
 
 const cardList = new Section({
     renderer: (item) => {
@@ -34,7 +38,7 @@ const cardList = new Section({
 }, cardListSelector);
 
 const createCard = (cardData) => {
-    const card = new Card(cardData, '.item-template', handleCardClick);
+    const card = new Card(cardData, '.item-template', handleCardClick, handleCardRemove);
     const cardElement = card.generateCard();
     return cardElement;
 };
@@ -57,6 +61,35 @@ const openPopupAdd = () => {
     validatorAddCardForm.resetValidation();
     popupNewCard.open();
 };
+
+const openPopupEditAvatar = () => {
+    validatorEditAvatarForm.resetValidation();
+    popupNewAvatar.open();
+};
+
+const popupNewAvatar = new PopupWithForm({
+    popupSelector: '.popup_type_edit-avatar',
+    handleFormSubmit: (item) => {
+        item = {
+            avatar: inputAvatar.value
+        };
+        //тут нужно вызвать метод класса для установки аватара
+    }
+});
+
+popupNewAvatar.setEventListeners();
+
+const popupCardDeletion = new PopupWithForm({
+    popupSelector: '.popup_type_delete',
+    handleFormSubmit: (item) => {
+        item = { };
+    }
+    //тут надо вызвать метод класса для подтверждения удаления карточки
+});
+const handleCardRemove = () => {
+popupCardDeletion.open()};
+
+popupCardDeletion.setEventListeners();
 
 const popupNewCard = new PopupWithForm({
     popupSelector: '.popup_type_add',
@@ -91,8 +124,10 @@ const userInfo = new UserInfo({
 
 buttonEditProfile.addEventListener('click', openPopupEdit);
 buttonAddCard.addEventListener('click', openPopupAdd);
+buttonEditAvatar.addEventListener('click', openPopupEditAvatar);
 
 validatorEditProfileForm.enableValidation();
 validatorAddCardForm.enableValidation();
+validatorEditAvatarForm.enableValidation();
 
 cardList.renderItems(initialCards);
