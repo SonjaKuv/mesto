@@ -1,7 +1,8 @@
 export default class UserInfo {
-    constructor({ profileName, profileJob }) {
+    constructor({ profileName, profileJob, profileAvatar }) {
         this._name = document.querySelector(profileName);
         this._job = document.querySelector(profileJob);
+        this._avatar = document.querySelector(profileAvatar);
     }
 
     getUserInfo() {
@@ -16,5 +17,9 @@ export default class UserInfo {
         this._job.textContent = inputJob;
         return this._info;
 
+    }
+
+    setProfileAvatar(inputAvatar) {
+        this._avatar.style.backgroundImage = url('`${inputAvatar}`');
     }
 }

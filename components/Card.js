@@ -21,7 +21,7 @@ export default class Card {
         this._likeButton.classList.toggle('grid-item__like_active');
     };
 
-    _removeCard() {
+    removeCard() {
         this._element.remove();
         this._element = null;
     };

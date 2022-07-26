@@ -73,7 +73,7 @@ const popupNewAvatar = new PopupWithForm({
         item = {
             avatar: inputAvatar.value
         };
-        //тут нужно вызвать метод класса для установки аватара
+        userInfo.setProfileAvatar(item.avatar)
     }
 });
 
@@ -84,8 +84,9 @@ const popupCardDeletion = new PopupWithForm({
     handleFormSubmit: (item) => {
         item = { };
     }
-    //тут надо вызвать метод класса для подтверждения удаления карточки
+
 });
+
 const handleCardRemove = () => {
 popupCardDeletion.open()};
 
@@ -119,7 +120,8 @@ popupNewProfileInfo.setEventListeners();
 
 const userInfo = new UserInfo({
     profileName: '.profile__name',
-    profileJob: '.profile__description'
+    profileJob: '.profile__description',
+    profileAvatar: '.profile__avatar'
 });
 
 buttonEditProfile.addEventListener('click', openPopupEdit);
