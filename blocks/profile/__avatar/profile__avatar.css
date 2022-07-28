@@ -3,11 +3,7 @@
   height: 120px;
   overflow: hidden;
   border-radius: 120px;
-  display: block;
   position: relative;
-  background-image: url('../../../images/avatar.jpg');
-  background-position: center;
-  background-size: contain;
 }
 
 .profile__avatar::before {

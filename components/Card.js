@@ -39,7 +39,6 @@ export default class Card {
         });
         this._trashIcon.addEventListener('click', () => {
             this._handleCardRemove()
-          // this._removeCard()
         });
     }
 

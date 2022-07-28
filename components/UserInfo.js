@@ -20,6 +20,6 @@ export default class UserInfo {
     }
 
     setProfileAvatar(inputAvatar) {
-        this._avatar.style.backgroundImage = url('`${inputAvatar}`');
+        this._avatar.src = inputAvatar;
     }
 }

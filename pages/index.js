@@ -83,12 +83,14 @@ const popupCardDeletion = new PopupWithForm({
     popupSelector: '.popup_type_delete',
     handleFormSubmit: (item) => {
         item = { };
+   const card = new Card(item, '.item-template', handleCardClick, handleCardRemove);
+   card.removeCard()
     }
-
 });
 
 const handleCardRemove = () => {
-popupCardDeletion.open()};
+popupCardDeletion.open()
+};
 
 popupCardDeletion.setEventListeners();
 
@@ -121,7 +123,7 @@ popupNewProfileInfo.setEventListeners();
 const userInfo = new UserInfo({
     profileName: '.profile__name',
     profileJob: '.profile__description',
-    profileAvatar: '.profile__avatar'
+    profileAvatar: '.profile__avatar-photo'
 });
 
 buttonEditProfile.addEventListener('click', openPopupEdit);

@@ -3,9 +3,9 @@
   background-color: #fff;
   width: 22px;
   height: 19px;
-  margin: 30px 20px 30px;
+  margin: 22px 0 3px 0;
   grid-area: like;
-  justify-self: end;
+  justify-self: center;
   transition: opacity 0.3s ease;
 }
 
