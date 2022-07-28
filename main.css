@@ -14,7 +14,7 @@
 .profile__add-button{background-color:transparent;border:2px solid #fff;border-radius:2px;height:50px;margin:auto 0 auto auto;transition:opacity .3s ease;width:150px}.profile__add-button:hover{opacity:.6}@media (max-width:959px){.profile__add-button{margin:0 auto;width:282px}}
 .profile__add-button-icon{margin:auto;width:22px}@media (max-width:959px){.profile__add-button-icon{width:16px}}
 .grid-elements{display:grid;gap:20px 17px;grid-template-columns:repeat(auto-fit,282px);justify-content:center;margin:0 auto;max-width:880px;padding-bottom:68px;padding-left:15.625%;padding-right:15.625%}@media (max-width:500px){.grid-elements{padding-bottom:50px;padding-left:5.94%;padding-right:5.94%}}
-.grid-item{background-color:#fff;border-radius:10px;display:grid;grid-template-areas:"photo photo" "title like" "title number";grid-template-columns:1fr 62px;grid-template-rows:282px 45px 35px;margin:0 auto;overflow:hidden;position:relative;width:282px}
+.grid-item{background-color:#fff;border-radius:10px;display:grid;grid-template-areas:"photo photo" "title like" "title number";grid-template-columns:1fr 62px;grid-template-rows:282px 45px 35px;margin:0 auto;max-height:361px;overflow:hidden;position:relative;width:282px}
 .grid-item__photo{cursor:pointer;grid-area:photo;height:282px;width:282px}
 .grid-item__title{color:#000;font-size:24px;font-weight:900;grid-area:title;line-height:29px;margin:25px 0 0 21px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .grid-item__like{background-color:#fff;background-image:url(1ad06e85f169668a1f36.svg);grid-area:like;height:19px;justify-self:center;margin:22px 0 3px;transition:opacity .3s ease;width:22px}.grid-item__like:hover{opacity:.5}
