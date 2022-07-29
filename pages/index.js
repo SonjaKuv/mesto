@@ -25,6 +25,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api';
 
 const validatorEditProfileForm = new FormValidator(validationConfig, formEditProfile);
 const validatorAddCardForm = new FormValidator(validationConfig, formAddCard);
@@ -134,4 +135,29 @@ validatorEditProfileForm.enableValidation();
 validatorAddCardForm.enableValidation();
 validatorEditAvatarForm.enableValidation();
 
-cardList.renderItems(initialCards);
+const apiConfig = {
+url: 'https://mesto.nomoreparties.co/v1/cohort-46',
+headers: {
+    authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da',
+    'Content-Type': 'application/json'
+  },
+}
+
+const api = new Api({apiConfig});
+
+  api.getInitialCards()
+  .then((result) => {
+    cardList.renderItems(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+/*
+  api.addNewCard({name: 'mememe', link: 'https://russiantourism.ru/netcat_files/2343_27909.jpg'})
+  .then((result) => {
+console.log(result)
+})
+.catch((err) => {
+  console.log(err);
+});
+*/
