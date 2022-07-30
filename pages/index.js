@@ -142,17 +142,25 @@ headers: {
     'Content-Type': 'application/json'
   },
 }
-
-const api = new Api({apiConfig});
+const api = new Api(apiConfig);
 
   api.getInitialCards()
   .then((result) => {
+    console.log(result)
     cardList.renderItems(result);
   })
   .catch((err) => {
     console.log(err);
   });
-/*
+
+ /*
+  api.deleteCard('62e56dc61aedd50a87b17b89')
+  .then((result) => {console.log(result) 
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
   api.addNewCard({name: 'mememe', link: 'https://russiantourism.ru/netcat_files/2343_27909.jpg'})
   .then((result) => {
 console.log(result)

@@ -4,22 +4,20 @@ export default class Api {
       this._headers = headers;
     }
 
-      getInitialCards() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-46/cards', {
-          headers: {
-            authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da'
-          }
-        })
-          .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-          });
-      }
+    getInitialCards() {
+      return fetch(`${this._url}/cards`, {
+        headers: this._headers
+      })
+      .then(res => res.ok
+        ? res.json()
+        : Promise.reject(`Ошибка: ${res.status}`)
+  )
+    }
 
       getUserInfo() {
-        return fetch(this._url, this._headers)
+        return fetch(`${this._url}/users/me`, {
+          headers: this._headers
+        })
     .then(res => res.ok
           ? res.json()
           : Promise.reject(`Ошибка: ${res.status}`)
@@ -27,12 +25,9 @@ export default class Api {
 }
   
     editProfileInfo(name, about) {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-46/users/me', {
+      return fetch(`${this._url}/users/me`, {
   method: 'PATCH',
-  headers: {
-    authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da',
-    'Content-Type': 'application/json'
-  },
+  headers: this._headers,
   body: JSON.stringify({
     name: 'Marie Skłodowska Curie',
     about: 'Physicist and Chemist'
@@ -41,7 +36,7 @@ export default class Api {
     }
 
     addNewCard( {name, link} ) {
-      fetch(this._url, {
+      return fetch(`${this._url}/cards`, {
         headers: this._headers,
         method: 'POST',
         body: JSON.stringify({name, link})
@@ -53,38 +48,34 @@ export default class Api {
     }
 
     deleteCard(_id) {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-46/cards/cardId', {
-            method: 'DELETE',
-  headers: {
-    authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da',
-      }
-        })
+      return fetch(`${this._url}/cards/${_id}`, {
+        headers: this._headers,
+        method: 'DELETE',
+    })
+    .then(res => res.ok
+        ? res.json()
+        : Promise.reject(`Ошибка: ${res.status}`)
+  )
     }
 
     likeCard() {
-fetch('https://mesto.nomoreparties.co/v1/cohort-46/cards/cardId/likes', {
+return fetch(`${this._url}/cards/${id}/likes`, {
     method: 'PUT',
-  headers: {
-    authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da',
-      }
+  headers: this._headers,
 })
     }
 
   deleteCardLike() {
-fetch('https://mesto.nomoreparties.co/v1/cohort-46/cards/cardId/likes', {
+    return fetch(`${this._url}/cards/${id}/likes`, {
     method: 'DELETE',
-  headers: {
-    authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da',
-      }
+  headers: this._headers,
 })
   }
 
   setNewAvatar(avatar) {
-    fetch('https://mesto.nomoreparties.co/v1/cohortId/users/me/avatar', {
+    return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
-        headers: {
-          authorization: 'fc76fdb8-e2ba-4757-a444-c4106fd529da',
-            },
+        headers: this._headers,
             body: JSON.stringify({
                 avatar: ''
               }) 
