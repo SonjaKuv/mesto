@@ -34,12 +34,15 @@ export default class Card {
       .then((res) => {
         this._likeButton.classList.toggle("grid-item__like_active");
         this.isLiked = !this.isLiked;
-        this._likesNumber.textContent = res.this._likes.length;
-        console.log(this._likes.length)
+       // this._likesNumber.textContent = this._likes.length;
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  updateLikeStatus(data) {
+    this._likesNumber.textContent = data.length;
   }
 
   removeCard() {

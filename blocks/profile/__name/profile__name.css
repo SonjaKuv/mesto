@@ -1,5 +1,4 @@
 .profile__name {
-  margin: 0;
   padding: 0;
   grid-area: name;
   font-weight: 500;
@@ -8,6 +7,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 @media (max-width: 959px) {

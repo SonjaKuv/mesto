@@ -20,7 +20,27 @@ export default class Api {
     );
   }
 
-  addNewCard({ name, link }) {
+  setUserInfo(name, about) {
+    return fetch(`${this._url}/users/me`, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({ name, about }),
+    }).then((res) =>
+      res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+    );
+  }
+
+  setNewAvatar(avatar) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({avatar}),
+    }).then((res) =>
+    res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+  );
+}
+
+  addNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
       method: "POST",
@@ -47,26 +67,4 @@ export default class Api {
     res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
   );
 }
-/*
-  editProfileInfo(name, about) {
-    return fetch(`${this._url}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        about: "Physicist and Chemist",
-      }),
-    });
-  }
-
-  setNewAvatar(avatar) {
-    return fetch(`${this._url}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: "",
-      }),
-    });
-  }
-  */
 }
