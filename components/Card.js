@@ -34,14 +34,14 @@ export default class Card {
   }
 
 _toggleLike = () => {
- //this._likeButton.classList.toggle('grid-item__like_active');
+  this._handleLikeIconClick(this._id, this.isLiked);
+ this._likeButton.classList.toggle('grid-item__like_active');
  this.isLiked = !this.isLiked;
-        this._likesNumber.textContent = this._likes.length;
-        this._handleLikeIconClick(this._id, this.isLiked);
+      //  this._likesNumber.textContent = this._likes.length;
       }
 
-  updateLikeStatus(data) {
-    this._likesNumber.textContent = data.length;
+  updateLikeStatus = (likes) => {
+    this._likesNumber.textContent = likes.length;
   }
 
   _checkLikesAuthor() {

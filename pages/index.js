@@ -72,9 +72,7 @@ api
     console.log(err);
   });
 
-const handleLikeIconClick = () => {
-  console.log("lf");
-
+const handleLikeIconClick = (id, isLiked) => {
   api
     .changeLikeStatus(id, isLiked)
     .then((result) => {
@@ -86,7 +84,7 @@ const handleLikeIconClick = () => {
         handleLikeIconClick,
         profileId
       );
-      card.updateLikeStatus(result);
+      card.updateLikeStatus(result.likes);
     })
     .catch((err) => {
       console.log(err);
@@ -100,10 +98,12 @@ const popupNewCard = new PopupWithForm({
       name: inputTitle.value,
       link: inputLink.value,
     };
+    popupNewCard.setLoading(true);
     api
       .addNewCard(item.name, item.link)
       .then((result) => {
         cardList.addItem(createCard(result));
+        popupNewCard.setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -139,10 +139,12 @@ const popupNewProfileInfo = new PopupWithForm({
       name: inputName.value,
       about: inputJob.value,
     };
+    popupNewProfileInfo.setLoading(true);
     api
       .setUserInfo(info.name, info.about)
       .then((result) => {
         userInfo.setUserInfo(result);
+        popupNewProfileInfo.setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -164,11 +166,12 @@ const popupNewAvatar = new PopupWithForm({
     info = {
       avatar: inputAvatar.value,
     };
+    popupNewAvatar.setLoading(true);
     api
       .setNewAvatar(info.avatar)
       .then((result) => {
         userInfo.setUserInfo(result);
-        console.log(result);
+        popupNewAvatar.setLoading(false);
       })
       .catch((err) => {
         console.log(err);
