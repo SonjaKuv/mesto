@@ -1,23 +1,22 @@
 export default class Card {
   constructor(
-    { name, link, _id, likes },
+    { name, link, _id, likes, owner },
     cardSelector,
     handleCardClick,
-    openPopupDeleteCard,
-    handleDeleteCard,
+    handleDeleteIconClick,
     handleLikeIconClick,
-    handleAddCard,
+    profileId
   ) {
     this._title = name;
     this._link = link;
     this._id = _id;
     this._likes = likes;
+    this._ownerId = owner._id
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-    this._openPopupDeleteCard = openPopupDeleteCard;
-    this._handleDeleteCard = handleDeleteCard;
+    this._handleDeleteIconClick = handleDeleteIconClick;
     this._handleLikeIconClick = handleLikeIconClick;
-    this._handleAddCard = handleAddCard;
+    this._profileId = profileId;
   }
 
   _getTemplate() {
@@ -29,53 +28,57 @@ export default class Card {
     return cardElement;
   }
 
-  _toggleLike() {
-    this._handleLikeIconClick(this._id, this.isLiked)
-      .then((res) => {
-        this._likeButton.classList.toggle("grid-item__like_active");
-        this.isLiked = !this.isLiked;
-       // this._likesNumber.textContent = this._likes.length;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  removeCard() {
+    this._element.remove();
+    this._element = null;
   }
+
+_toggleLike = () => {
+ //this._likeButton.classList.toggle('grid-item__like_active');
+ this.isLiked = !this.isLiked;
+        this._likesNumber.textContent = this._likes.length;
+        this._handleLikeIconClick(this._id, this.isLiked);
+      }
 
   updateLikeStatus(data) {
     this._likesNumber.textContent = data.length;
   }
 
-  removeCard() {
-    this._handleDeleteCard(this._id)
-      .then((res) => {
-        this._element.remove();
-        this._element = null;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  _checkLikesAuthor() {
+    if (this._likes.some(user => user._id === this._profileId)) {
+      this._likeButton.classList.add('grid-item__like_active');
+    }
+  }
+
+  _checkCardAuthor() {
+    if (this._ownerId !== this._profileId) {
+      this._trashIcon.classList.remove("grid-item__trash");
+    }
   }
 
   _setEventListeners() {
     this._cardImage = this._element.querySelector(".grid-item__photo");
     this._likeButton = this._element.querySelector(".grid-item__like");
     this._trashIcon = this._element.querySelector(".grid-item__trash");
-    this._likesNumber = this._element.querySelector('.grid-item__likes-number');
+    this._likesNumber = this._element.querySelector(".grid-item__likes-number");
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._title, this._link);
     });
     this._likeButton.addEventListener("click", () => {
-      this._toggleLike();
+      this._toggleLike()
     });
+
     this._trashIcon.addEventListener("click", () => {
-      this._openPopupDeleteCard(this._id);
+      this._handleDeleteIconClick(this);
     });
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    this._checkLikesAuthor();
+    this._checkCardAuthor();
     this._cardTitle = this._element.querySelector(".grid-item__title");
     this._cardTitle.textContent = this._title;
     this._cardImage.alt = this._title;

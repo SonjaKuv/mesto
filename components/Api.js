@@ -34,11 +34,11 @@ export default class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({avatar}),
+      body: JSON.stringify({ avatar }),
     }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
-  );
-}
+      res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+    );
+  }
 
   addNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
@@ -64,7 +64,7 @@ export default class Api {
       method: isLiked ? "DELETE" : "PUT",
       headers: this._headers,
     }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
-  );
-}
+      res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+    );
+  }
 }
