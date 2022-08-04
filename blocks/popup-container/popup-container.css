@@ -1,7 +1,7 @@
 .popup-container {
   display: grid;
   grid-template-columns: auto 470px 32px auto;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr auto 1fr;
   grid-template-areas:
     ". . close ."
     ". form form ."
