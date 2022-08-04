@@ -1,43 +1,42 @@
-import Popup from '../components/Popup.js'
+import Popup from "../components/Popup.js";
 
 export default class PopupWithForm extends Popup {
-    constructor({ popupSelector, handleFormSubmit }) {
-        super(popupSelector);
-        this._handleFormSubmit = handleFormSubmit;
-        this._inputList = this._popup.querySelectorAll('.form__input');
-        this._form = this._popup.querySelector('.form');
-    }
+  constructor({ popupSelector, handleFormSubmit }) {
+    super(popupSelector);
+    this._handleFormSubmit = handleFormSubmit;
+    this._inputList = this._popup.querySelectorAll(".form__input");
+    this._form = this._popup.querySelector(".form");
+  }
 
-    _getInputValues() {
-        this._formValues = {};
-        this._inputList.forEach((input) => {
-            this._formValues[input] = input.value;
-        });
-        return this._formValues
-    }
+  _getInputValues() {
+    this._formValues = {};
+    this._inputList.forEach((input) => {
+      this._formValues[input] = input.value;
+    });
+    return this._formValues;
+  }
 
-    setEventListeners() {
-        super.setEventListeners();
-        this._popup.addEventListener('submit', this._submitHandler)
-    }
+  setEventListeners() {
+    super.setEventListeners();
+    this._popup.addEventListener("submit", this._submitHandler);
+  }
 
-    _submitHandler = (evt) => {
-        evt.preventDefault();
-        this._handleFormSubmit(this._getInputValues());
-    }
+  _submitHandler = (evt) => {
+    evt.preventDefault();
+    this._handleFormSubmit(this._getInputValues());
+  };
 
-    setLoading = (status) => {
-        this._submitButton = this._popup.querySelector('.form__submit-button');
-        if (status === true) {
-            this._submitButton.textContent = 'Сохранение...'
-        } else {
-            this.close()
-        }
+  setLoading = (status) => {
+    this._submitButton = this._popup.querySelector(".form__submit-button");
+    if (status === true) {
+      this._submitButton.textContent = "Сохранение...";
+    } else {
+      this.close();
     }
+  };
 
-    close() {
-        super.close();
-        this._form.reset();
-    }
+  close() {
+    super.close();
+    this._form.reset();
+  }
 }
-

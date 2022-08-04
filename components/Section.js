@@ -10,7 +10,6 @@ export default class Section {
     });
   }
 
-
   addServerCard(element) {
     this._container.append(element);
   }

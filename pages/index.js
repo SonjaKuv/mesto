@@ -50,14 +50,29 @@ const cardList = new Section(
 );
 
 const createCard = (cardData) => {
-  const card = new Card(
-    cardData,
-    ".item-template",
-    handleCardClick,
-    handleDeleteIconClick,
-    handleLikeIconClick,
-    profileId
-  );
+  const card = new Card({
+    data: cardData,
+    cardSelector: ".item-template",
+    handleCardClick: (name, link) => {
+      popupOpenImage.open(name, link);
+    },
+    handleDeleteIconClick: (card) => {
+      popupCardDeletion.card = card;
+      popupCardDeletion.open();
+    },
+    handleLikeIconClick: (id, isLiked, likesNumber) => {
+      api
+        .changeLikeStatus(id, isLiked)
+        .then((result) => {
+          const likesAmount = result.likes.length;
+          card.updateLikeStatus(likesNumber, likesAmount);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    profileId: profileId,
+  });
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -65,56 +80,11 @@ const createCard = (cardData) => {
 api
   .getInitialCards()
   .then((result) => {
-    console.log(result);
     cardList.renderItems(result);
   })
   .catch((err) => {
     console.log(err);
   });
-
-const handleLikeIconClick = (id, isLiked) => {
-  api
-    .changeLikeStatus(id, isLiked)
-    .then((result) => {
-      const card = new Card(
-        result,
-        ".item-template",
-        handleCardClick,
-        handleDeleteIconClick,
-        handleLikeIconClick,
-        profileId
-      );
-      card.updateLikeStatus(result.likes);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-const popupNewCard = new PopupWithForm({
-  popupSelector: ".popup_type_add",
-  handleFormSubmit: (item) => {
-    item = {
-      name: inputTitle.value,
-      link: inputLink.value,
-    };
-    popupNewCard.setLoading(true);
-    api
-      .addNewCard(item.name, item.link)
-      .then((result) => {
-        cardList.addItem(createCard(result));
-        popupNewCard.setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-});
-const openPopupAdd = () => {
-  validatorAddCardForm.resetValidation();
-  popupNewCard.open();
-  popupNewCard.setEventListeners();
-};
 
 /////////Данные профиля\\\\\\\\\\
 const userInfo = new UserInfo(profileName, profileJob, profileAvatar);
@@ -131,7 +101,8 @@ api
     console.log(err);
   });
 
-/*Редактирование профиля*/
+////////////////Popups\\\\\\\\\\\\\\\\
+/*Попап редактирования профиля*/
 const popupNewProfileInfo = new PopupWithForm({
   popupSelector: ".popup_type_edit",
   handleFormSubmit: (info) => {
@@ -159,7 +130,7 @@ const openPopupEdit = () => {
   popupNewProfileInfo.setEventListeners();
 };
 
-/*Редактирование аватара*/
+/*Попап редактирования аватара*/
 const popupNewAvatar = new PopupWithForm({
   popupSelector: ".popup_type_edit-avatar",
   handleFormSubmit: (info) => {
@@ -184,14 +155,37 @@ const openPopupEditAvatar = () => {
   popupNewAvatar.setEventListeners();
 };
 
-/*Открытие картинки*/
-const popupOpenImage = new PopupWithImage(".popup_type_view");
-const handleCardClick = (name, link) => {
-  popupOpenImage.open(name, link);
+/*Попап создания новой карточки*/
+const popupNewCard = new PopupWithForm({
+  popupSelector: ".popup_type_add",
+  handleFormSubmit: (item) => {
+    item = {
+      name: inputTitle.value,
+      link: inputLink.value,
+    };
+    popupNewCard.setLoading(true);
+    api
+      .addNewCard(item.name, item.link)
+      .then((result) => {
+        cardList.addItem(createCard(result));
+        popupNewCard.setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+});
+const openPopupAdd = () => {
+  validatorAddCardForm.resetValidation();
+  popupNewCard.open();
+  popupNewCard.setEventListeners();
 };
+
+/*Попап открытия картинки*/
+const popupOpenImage = new PopupWithImage(".popup_type_view");
 popupOpenImage.setEventListeners();
 
-/*Удаление карточки*/
+/*Попап удаления карточки*/
 const popupCardDeletion = new PopupWithConfirmation({
   popupSelector: ".popup_type_delete",
   handleCardDelete: () => {
@@ -207,16 +201,13 @@ const popupCardDeletion = new PopupWithConfirmation({
       });
   },
 });
-const handleDeleteIconClick = (card) => {
-  popupCardDeletion.card = card;
-  popupCardDeletion.open();
-};
 
 ////////////////Forms validation\\\\\\\\\\\\\\\\
 const validatorEditProfileForm = new FormValidator(
   validationConfig,
   formEditProfile
 );
+
 const validatorAddCardForm = new FormValidator(validationConfig, formAddCard);
 const validatorEditAvatarForm = new FormValidator(
   validationConfig,

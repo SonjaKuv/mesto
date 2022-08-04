@@ -1,17 +1,17 @@
 export default class Card {
-  constructor(
-    { name, link, _id, likes, owner },
+  constructor({
+    data,
     cardSelector,
     handleCardClick,
     handleDeleteIconClick,
     handleLikeIconClick,
-    profileId
-  ) {
-    this._title = name;
-    this._link = link;
-    this._id = _id;
-    this._likes = likes;
-    this._ownerId = owner._id
+    profileId,
+  }) {
+    this._title = data.name;
+    this._link = data.link;
+    this._id = data._id;
+    this._likes = data.likes;
+    this._ownerId = data.owner._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
@@ -28,25 +28,9 @@ export default class Card {
     return cardElement;
   }
 
-  removeCard() {
-    this._element.remove();
-    this._element = null;
-  }
-
-_toggleLike = () => {
-  this._handleLikeIconClick(this._id, this.isLiked);
- this._likeButton.classList.toggle('grid-item__like_active');
- this.isLiked = !this.isLiked;
-      //  this._likesNumber.textContent = this._likes.length;
-      }
-
-  updateLikeStatus = (likes) => {
-    this._likesNumber.textContent = likes.length;
-  }
-
   _checkLikesAuthor() {
-    if (this._likes.some(user => user._id === this._profileId)) {
-      this._likeButton.classList.add('grid-item__like_active');
+    if (this._likes.some((user) => user._id === this._profileId)) {
+      this._likeButton.classList.add("grid-item__like_active");
     }
   }
 
@@ -55,6 +39,12 @@ _toggleLike = () => {
       this._trashIcon.classList.remove("grid-item__trash");
     }
   }
+
+  _toggleLike = () => {
+    this._handleLikeIconClick(this._id, this.isLiked, this._likesNumber);
+    this._likeButton.classList.toggle("grid-item__like_active");
+    this.isLiked = !this.isLiked;
+  };
 
   _setEventListeners() {
     this._cardImage = this._element.querySelector(".grid-item__photo");
@@ -66,7 +56,7 @@ _toggleLike = () => {
       this._handleCardClick(this._title, this._link);
     });
     this._likeButton.addEventListener("click", () => {
-      this._toggleLike()
+      this._toggleLike();
     });
 
     this._trashIcon.addEventListener("click", () => {
@@ -86,5 +76,15 @@ _toggleLike = () => {
     this._likesNumber.textContent = this._likes.length;
 
     return this._element;
+  }
+
+  removeCard() {
+    this._element.remove();
+    this._element = null;
+  }
+
+  updateLikeStatus(likesNumber, likesAmount) {
+    this._likesNumber = likesNumber;
+    this._likesNumber.textContent = likesAmount;
   }
 }
