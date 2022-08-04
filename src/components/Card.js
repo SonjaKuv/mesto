@@ -44,6 +44,7 @@ export default class Card {
     this._handleLikeIconClick(this._id, this.isLiked, this._likesNumber);
     this._likeButton.classList.toggle("grid-item__like_active");
     this.isLiked = !this.isLiked;
+    console.log('aaa')
   };
 
   _setEventListeners() {
