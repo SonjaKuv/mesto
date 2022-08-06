@@ -40,13 +40,6 @@ export default class Card {
     }
   }
 
-  _toggleLike = () => {
-    this._handleLikeIconClick(this._id, this.isLiked, this._likesNumber);
-    this._likeButton.classList.toggle("grid-item__like_active");
-    this.isLiked = !this.isLiked;
-    console.log('aaa')
-  };
-
   _setEventListeners() {
     this._cardImage = this._element.querySelector(".grid-item__photo");
     this._likeButton = this._element.querySelector(".grid-item__like");
@@ -54,10 +47,10 @@ export default class Card {
     this._likesNumber = this._element.querySelector(".grid-item__likes-number");
 
     this._cardImage.addEventListener("click", () => {
-      this._handleCardClick(this._title, this._link);
+      this._handleCardClick(this);
     });
     this._likeButton.addEventListener("click", () => {
-      this._toggleLike();
+      this._handleLikeIconClick(this);
     });
 
     this._trashIcon.addEventListener("click", () => {
@@ -84,8 +77,9 @@ export default class Card {
     this._element = null;
   }
 
-  updateLikeStatus(likesNumber, likesAmount) {
-    this._likesNumber = likesNumber;
+  updateLikeStatus(likesAmount) {
     this._likesNumber.textContent = likesAmount;
+    this._likeButton.classList.toggle("grid-item__like_active");
+    this.isLiked = !this.isLiked;
   }
 }
