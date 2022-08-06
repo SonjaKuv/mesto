@@ -78,7 +78,7 @@ const userInfo = new UserInfo(profileName, profileJob, profileAvatar);
 
 let profileId;
 
-Promise.all([api.getUserInfo(), api.getInitialCards()]) 
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     profileId = userData._id;
     userInfo.setUserInfo(userData);
@@ -104,8 +104,8 @@ const popupNewProfileInfo = new PopupWithForm({
         console.log(err);
       })
       .finally(() => {
-        popupNewProfileInfo.renderLoading(false)
-      })
+        popupNewProfileInfo.renderLoading(false);
+      });
   },
 });
 const openPopupEdit = () => {
@@ -131,7 +131,7 @@ const popupNewAvatar = new PopupWithForm({
       })
       .finally(() => {
         popupNewAvatar.renderLoading(false);
-      })
+      });
   },
 });
 const openPopupEditAvatar = () => {
@@ -156,7 +156,7 @@ const popupNewCard = new PopupWithForm({
       })
       .finally(() => {
         popupNewCard.renderLoading(false);
-      })
+      });
   },
 });
 const openPopupAdd = () => {

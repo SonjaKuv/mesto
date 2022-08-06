@@ -34,13 +34,13 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit(this._getInputValues());
   };
 
-  renderLoading = (isLoading, loadingText='Сохранение...') => {
+  renderLoading = (isLoading, loadingText = "Сохранение...") => {
     if (isLoading) {
       this._submitButton.textContent = loadingText;
     } else {
       this._submitButton.textContent = this._submitButtonText;
     }
-  }
+  };
 
   close() {
     super.close();
